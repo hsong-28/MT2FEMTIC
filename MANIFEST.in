@@ -1,0 +1,17 @@
+include .gitignore
+include .gitattributes
+recursive-include .github *.yml
+include CITATION.cff
+include LICENSE*
+include SHA256SUMS.txt
+include THIRD_PARTY_NOTICES.md
+recursive-include docs *.md
+prune docs/designs
+prune docs/plans
+recursive-include examples *
+recursive-include scripts *.py
+recursive-include tests *.py *.json *.edi *.rho *.dat *.md *.j *.mtt *.nc
+include tests/fixtures/femticpy/LICENSE
+include tests/fixtures/jif3d/LICENSE
+global-exclude *.py[cod]
+global-exclude __pycache__

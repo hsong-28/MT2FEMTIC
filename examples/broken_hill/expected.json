@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "case": "broken-hill",
+  "station_count": 21,
+  "coordinate_contract": {
+    "horizontal_axes": "x=north, y=east",
+    "h2_source": "ModEM north/east only",
+    "edi_allowed_for_h2": false
+  },
+  "data_outputs": {
+    "edi": {
+      "observe.dat": "02c60fcde39221669f3ff6829c49e969039ed0ca61d720b327b7363f1bed4e7f",
+      "obs_site.dat": "c6f04185905adc9b40fc83c503eaa22d38d48cfccd479a43bbb043a0acfe353a",
+      "distortion_iter0.dat": "ed1d94bc309132e86e214be762b7809115fa7cd59ebc79f595cf9d8a6faf3963"
+    },
+    "modem": {
+      "observe.dat": "eecb82f8c0716167205af64fdda752e8f435a0603ce8320f582b9ddbde75add4",
+      "obs_site.dat": "16c83667e055aeb23416002173c9f6d342a28b6e33ed75372320d6ddadda77d9",
+      "distortion_iter0.dat": "ed1d94bc309132e86e214be762b7809115fa7cd59ebc79f595cf9d8a6faf3963"
+    }
+  },
+  "stage04_outputs": {
+    "axis_divisions": [129, 120, 62],
+    "meshgen.inp": "03af5f8358e40f48194b115c9a97f886f8687e639abb9a812fad3652415587c6",
+    "obs_site.dat": "1b65b6b25638d3319fe371d1443f075eb1ba0aba97f1050d620c88aad483bad2"
+  },
+  "h2": {
+    "prepared_meshgen_sha256": "4d23d4756c1ec8695b53418c598717ff2f15881a6022cfc95ffbff988e761913",
+    "prepared_obs_site_sha256": "8cb4344ca0ff3cce4ecb07114d75626552c69951d7713a8eb429f481d6533ebc",
+    "outputs": {
+      "mesh.dat": "df8f9ed68e6072ebe065261bf8a24ce51f3f8d71bb070bfc59f82c31586f259d",
+      "resistivity_block_iter0.dat": "81a38728556dfccf947c173fe3353623430586ccea9ed32e5365da150088bda3",
+      "MeshData.vtk": "bd5bea654c04a5db62cdb438382699887886fe56ed175130aac978303cdb0684"
+    },
+    "node_count": 123983,
+    "element_count": 112664,
+    "parameter_count": 96644,
+    "active_parameter_count": 96643,
+    "minimum_resistivity_ohm_m": 250.0,
+    "maximum_resistivity_ohm_m": 10000000000.0,
+    "end_marker": "End Mesh Generation"
+  }
+}

@@ -1,0 +1,27 @@
+>HEAD
+DATAID=S01
+LAT=50:00:00N
+LONG=9:00:00E
+ELEV=750
+NFREQ=1
+processing.sign_convention = exp(+i \omega t)
+>FREQ //1
+1.0
+>ZXYR //1
+1.0
+>ZXYI //1
+2.0
+>ZXY.VAR //1
+4.0
+>ZYXR //1
+-1.0
+>ZYXI //1
+-2.0
+>ZYX.VAR //1
+9.0
+>TXR.EXP //1
+0.1
+>TXI.EXP //1
+0.2
+>TXVAR.EXP //1
+0.01

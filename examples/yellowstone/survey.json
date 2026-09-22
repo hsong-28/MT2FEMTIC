@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "config_kind": "data",
+  "dataset_id": "yellowstone-srp-usarray-98-current",
+  "source": {
+    "type": "edi",
+    "path": "0-EDI",
+    "impedance_unit": "mv_per_km_per_nt",
+    "time_convention": "exp_plus_iwt",
+    "allow_time_convention_override": false,
+    "edi_pattern": "*.edi",
+    "edi_list_file": "edi-files.txt",
+    "station_name_source": "edi_metadata"
+  },
+  "coordinates": {
+    "geographic_crs": "EPSG:4326",
+    "projected_crs": "+proj=merc +k=0.7241249848231853 +datum=WGS84 +units=m +no_defs",
+    "origin_easting_m": -9100781.45368368,
+    "origin_northing_m": 3902745.979112237,
+    "model_axis_azimuth_deg": 0.0,
+    "vertical_datum_elevation_m": 0.0,
+    "round_trip_tolerance_m": 0.01,
+    "modem_axis_convention": "north_east"
+  },
+  "selection": {
+    "frequency_policy": "exact",
+    "periods_s": [
+      9.142857142857142,
+      19.69231157017828,
+      42.666666666666664,
+      85.33333333333333,
+      170.66669579378276,
+      341.33327507912105,
+      528.5160853870588,
+      862.3157662365436,
+      1365.3329139030623,
+      2259.861981189361,
+      4681.143884319572,
+      7281.777860628228,
+      11915.64060092482,
+      18724.568525086335
+    ],
+    "relative_tolerance": 0.000002,
+    "impedance_error_floor_fraction": 0.05,
+    "vtf_error_floor_absolute": 0.03,
+    "max_vtf_period_s": 10000.0
+  },
+  "topography": {"enabled": false, "path": null, "columns": null},
+  "femtic": {"observation_refinement": {"radius_km": 0.5, "level": 0, "weight": 1.0}},
+  "run": {"overwrite": false, "resume": false}
+}

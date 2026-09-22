@@ -1,0 +1,28 @@
+{
+  "station_count": 21,
+  "station_period_count": 501,
+  "period_count": 24,
+  "period_min_s": 0.00333333,
+  "period_max_s": 333.333,
+  "complex_datum_count": 3006,
+  "active_real_scalar_count": 6012,
+  "north_min_m": -8943.158,
+  "north_max_m": 11027.83,
+  "east_min_m": -8369.389,
+  "east_max_m": 9253.883,
+  "source_sha256": "6f6a60ced32b8cba892bf6c51664ad9be380aec88e48ec4369c7cd8ff449e090",
+  "canonical_response_rows_sha256": "d2cf6a420b480b6381457734fb337961b3ac2d3285c48354733a1caeafdb8989",
+  "impedance_scale_to_ohm": 0.001256637061435917,
+  "time_convention_transform": "complex_conjugate",
+  "model_dimensions_north_east_depth": [
+    129,
+    120,
+    55
+  ],
+  "model_value_count": 851400,
+  "model_resistivity_min_ohm_m": 0.28154302532750014,
+  "model_resistivity_max_ohm_m": 27931.210542060435,
+  "model_sha256": "b25aec3a10eb8a63bc340e2356648db6d9341a09c2bbfa38edb741b2a705a83c",
+  "canonical_femtic_order_model_sha256": "1ce80ca95dc455babadfaf529d7d3ea3e66f8791023fbef356769eb77fbe03e6",
+  "round_trip_max_relative_difference": 0.0
+}

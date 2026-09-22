@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "config_kind": "data",
+  "dataset_id": "compact-modem",
+  "source": {
+    "type": "modem",
+    "path": "input/modem/survey.dat",
+    "impedance_unit": "mv_per_km_per_nt",
+    "time_convention": "exp_plus_iwt",
+    "allow_time_convention_override": false,
+    "edi_pattern": "*.edi"
+  },
+  "coordinates": {
+    "geographic_crs": "EPSG:4326",
+    "projected_crs": "EPSG:32632",
+    "origin_easting_m": 500000.0,
+    "origin_northing_m": 5538630.702867474,
+    "model_axis_azimuth_deg": 0.0,
+    "vertical_datum_elevation_m": 0.0,
+    "round_trip_tolerance_m": 0.01,
+    "modem_axis_convention": "north_east"
+  },
+  "selection": {
+    "frequency_policy": "exact",
+    "periods_s": [1.0],
+    "relative_tolerance": 0.001,
+    "impedance_error_floor_fraction": 0.01,
+    "vtf_error_floor_absolute": 0.01,
+    "max_vtf_period_s": 10000.0
+  },
+  "topography": {"enabled": false, "path": null, "columns": null},
+  "femtic": {
+    "observation_refinement": {"radius_km": 0.5, "level": 1, "weight": 0.5}
+  },
+  "run": {"overwrite": false, "resume": false}
+}

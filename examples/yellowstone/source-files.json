@@ -1,0 +1,795 @@
+{
+  "schema_version": 1,
+  "dataset_id": "yellowstone-srp-usarray-98-current",
+  "checked_utc": "2026-09-22",
+  "catalog_url": "https://gage-data.earthscope.org/app/products/portal/catalog/emtf/surveys.json",
+  "catalog_sha256": "8600e164e152588882881f864cb6e04a60db4549c4d0a682a6fbb909286b05b2",
+  "survey_doi": "https://doi.org/10.17611/DP/EMTF/USARRAY/TA",
+  "release_status": "Unrestricted Release",
+  "files": [
+    {
+      "legacy_station_id": 45,
+      "site_id": "IDF11",
+      "filename": "USArray.IDF11.2007.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2007/MT_TF_USArray.IDF11.2007/USArray.IDF11.2007.edi",
+      "bytes": 12450,
+      "sha256": "85d943ce8905d3a1a14a3cde88e4c364164869518fe47174c1f62d5443d8b26b"
+    },
+    {
+      "legacy_station_id": 46,
+      "site_id": "IDF12",
+      "filename": "USArray.IDF12.2007.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2007/MT_TF_USArray.IDF12.2007/USArray.IDF12.2007.edi",
+      "bytes": 12447,
+      "sha256": "e23faea523375f05255108ac00365f402d677e37dd7cb4ee724ec3651364a5f8"
+    },
+    {
+      "legacy_station_id": 47,
+      "site_id": "IDG11",
+      "filename": "USArray.IDG11.2007.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2007/MT_TF_USArray.IDG11.2007/USArray.IDG11.2007.edi",
+      "bytes": 12446,
+      "sha256": "f54358cf7762543a1e9ea0fe2819af0106093a132af13a91e3c3221b31095d9a"
+    },
+    {
+      "legacy_station_id": 48,
+      "site_id": "IDG12",
+      "filename": "USArray.IDG12.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDG12.2008/USArray.IDG12.2008.edi",
+      "bytes": 12468,
+      "sha256": "84e0d15b24e3e94652c902ec1afd4b39422d0c42963bf377545ec9cf29034860"
+    },
+    {
+      "legacy_station_id": 49,
+      "site_id": "IDG13",
+      "filename": "USArray.IDG13.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDG13.2008/USArray.IDG13.2008.edi",
+      "bytes": 12455,
+      "sha256": "2f33f48954f1fc728d01a8bb383951d5a279bcfb8ee0e87f1a32190e0e9afc61"
+    },
+    {
+      "legacy_station_id": 50,
+      "site_id": "IDH10",
+      "filename": "USArray.IDH10.2007.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2007/MT_TF_USArray.IDH10.2007/USArray.IDH10.2007.edi",
+      "bytes": 12446,
+      "sha256": "d93f431bfa8a369f38366cbe42b3339a3844ca1ae102b493612b53060375288e"
+    },
+    {
+      "legacy_station_id": 51,
+      "site_id": "IDH11",
+      "filename": "USArray.IDH11.2007.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2007/MT_TF_USArray.IDH11.2007/USArray.IDH11.2007.edi",
+      "bytes": 12451,
+      "sha256": "e0ac15e73a432f3d13af371729ccb56cd885f6927145cc45018a04b3de2dd2bb"
+    },
+    {
+      "legacy_station_id": 52,
+      "site_id": "IDH12",
+      "filename": "USArray.IDH12.2007.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2007/MT_TF_USArray.IDH12.2007/USArray.IDH12.2007.edi",
+      "bytes": 12455,
+      "sha256": "6f2dba26abd18694cff2534a208b82a592e4e2485456b7f356f588c8dd13a164"
+    },
+    {
+      "legacy_station_id": 53,
+      "site_id": "IDH13",
+      "filename": "USArray.IDH13.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDH13.2008/USArray.IDH13.2008.edi",
+      "bytes": 12469,
+      "sha256": "477929a5dfd1ca28981c30988e2f29b60ed1711bb1dc70e4b4d819997da8d409"
+    },
+    {
+      "legacy_station_id": 54,
+      "site_id": "IDH14",
+      "filename": "USArray.IDH14.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDH14.2008/USArray.IDH14.2008.edi",
+      "bytes": 12459,
+      "sha256": "051d95f8b7ce1b5affea4ef0ce8e600463e9bd49a0f26574bcfaa2c001e9e141"
+    },
+    {
+      "legacy_station_id": 55,
+      "site_id": "IDI10",
+      "filename": "USArray.IDI10.2007.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2007/MT_TF_USArray.IDI10.2007/USArray.IDI10.2007.edi",
+      "bytes": 12444,
+      "sha256": "c2b6f334f0673f5a99c7d7c8ca99d03125241fbf5b5535fd81a1fa087e69ee91"
+    },
+    {
+      "legacy_station_id": 56,
+      "site_id": "IDI11",
+      "filename": "USArray.IDI11.2007.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2007/MT_TF_USArray.IDI11.2007/USArray.IDI11.2007.edi",
+      "bytes": 12453,
+      "sha256": "8687f190d0280dcf24540c08cda6a0ed7989c289ac751042d4699e4da66351e3"
+    },
+    {
+      "legacy_station_id": 57,
+      "site_id": "IDI12",
+      "filename": "USArray.IDI12.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDI12.2008/USArray.IDI12.2008.edi",
+      "bytes": 12465,
+      "sha256": "3176ae0c5cf1320b2336deaddec1b874a402e6c878ad204f1e1f7012467861b2"
+    },
+    {
+      "legacy_station_id": 58,
+      "site_id": "IDI13",
+      "filename": "USArray.IDI13.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDI13.2008/USArray.IDI13.2008.edi",
+      "bytes": 12472,
+      "sha256": "bea69f2582e022069356cf448cb797ef467ed162ef83132d239844253a24b76f"
+    },
+    {
+      "legacy_station_id": 59,
+      "site_id": "IDI14",
+      "filename": "USArray.IDI14.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDI14.2008/USArray.IDI14.2008.edi",
+      "bytes": 12461,
+      "sha256": "217bf3c76e32f032c6b3b13c7047b4926d75da2340fdc68b24e205adb3721257"
+    },
+    {
+      "legacy_station_id": 60,
+      "site_id": "IDI15",
+      "filename": "USArray.IDI15.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDI15.2008/USArray.IDI15.2008.edi",
+      "bytes": 12470,
+      "sha256": "9e3ac4f62f3e2a8599d4965cc3feb63dfe4c33be589930f21d76e0b907da222a"
+    },
+    {
+      "legacy_station_id": 61,
+      "site_id": "IDI16",
+      "filename": "USArray.IDI16.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDI16.2008/USArray.IDI16.2008.edi",
+      "bytes": 12470,
+      "sha256": "437ca2fc992be3c905edfdca932a4d980e692d3064d40349d052df9193fda312"
+    },
+    {
+      "legacy_station_id": 62,
+      "site_id": "IDJ10",
+      "filename": "USArray.IDJ10.2007.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2007/MT_TF_USArray.IDJ10.2007/USArray.IDJ10.2007.edi",
+      "bytes": 12447,
+      "sha256": "1546851566e1ff665de838132b19810a9e5578ac7179427ec8fc297c8256291a"
+    },
+    {
+      "legacy_station_id": 63,
+      "site_id": "IDJ11",
+      "filename": "USArray.IDJ11.2007.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2007/MT_TF_USArray.IDJ11.2007/USArray.IDJ11.2007.edi",
+      "bytes": 12447,
+      "sha256": "a86a47540871e3c2e6debf015322ea485a6d3ce022004d623d924974170e2ecb"
+    },
+    {
+      "legacy_station_id": 64,
+      "site_id": "IDJ12",
+      "filename": "USArray.IDJ12.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDJ12.2008/USArray.IDJ12.2008.edi",
+      "bytes": 12468,
+      "sha256": "e7823aee0fde2e5c5410971c90c3e0e58f20d1e4a219bd3cdf749866be8d0767"
+    },
+    {
+      "legacy_station_id": 65,
+      "site_id": "IDJ13",
+      "filename": "USArray.IDJ13.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDJ13.2008/USArray.IDJ13.2008.edi",
+      "bytes": 12455,
+      "sha256": "007d4bc9652fddf40f88a3441970c5d5794cba8b1cd537b7f3fb9c04178b5e66"
+    },
+    {
+      "legacy_station_id": 66,
+      "site_id": "IDJ14",
+      "filename": "USArray.IDJ14.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDJ14.2008/USArray.IDJ14.2008.edi",
+      "bytes": 12466,
+      "sha256": "8aae9971ca5ce44cd0b69d01a08934b8c7df005c9947b0b5ad574194d17270dd"
+    },
+    {
+      "legacy_station_id": 67,
+      "site_id": "IDJ15",
+      "filename": "USArray.IDJ15.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDJ15.2008/USArray.IDJ15.2008.edi",
+      "bytes": 12462,
+      "sha256": "d60feef6c5fb6e5d3f959552c4e99ca48952a119eb24d850a7f0e4ba80ccf555"
+    },
+    {
+      "legacy_station_id": 68,
+      "site_id": "IDJ16",
+      "filename": "USArray.IDJ16.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDJ16.2008/USArray.IDJ16.2008.edi",
+      "bytes": 12470,
+      "sha256": "013c0e8dd02009becf4d59ae579065c2a298e931fecce9e4f9d0e012dccf863f"
+    },
+    {
+      "legacy_station_id": 69,
+      "site_id": "IDK10",
+      "filename": "USArray.IDK10.2007.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2007/MT_TF_USArray.IDK10.2007/USArray.IDK10.2007.edi",
+      "bytes": 12455,
+      "sha256": "9c2f5184506f1b728af09fe4a58105e567dbe984149c6d6d3ad50f13a4e6a687"
+    },
+    {
+      "legacy_station_id": 70,
+      "site_id": "IDK11",
+      "filename": "USArray.IDK11.2007.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2007/MT_TF_USArray.IDK11.2007/USArray.IDK11.2007.edi",
+      "bytes": 12445,
+      "sha256": "d584f10b1e58ef398049a4e6b07a02c08d237a0407bbe801338763b14b374f76"
+    },
+    {
+      "legacy_station_id": 71,
+      "site_id": "IDK12",
+      "filename": "USArray.IDK12.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDK12.2008/USArray.IDK12.2008.edi",
+      "bytes": 12476,
+      "sha256": "5684a4db734a568f1aac65ce6ade97d8745966549213fc27f4e22075547d3523"
+    },
+    {
+      "legacy_station_id": 72,
+      "site_id": "IDK13",
+      "filename": "USArray.IDK13.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDK13.2008/USArray.IDK13.2008.edi",
+      "bytes": 12469,
+      "sha256": "80a180051f2462f06b6103441f6ff5174c740cb196755a9c0e771c7afbeb4bd5"
+    },
+    {
+      "legacy_station_id": 73,
+      "site_id": "IDK14",
+      "filename": "USArray.IDK14.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDK14.2008/USArray.IDK14.2008.edi",
+      "bytes": 12468,
+      "sha256": "a39d4f27ca4c48cd4135207de735747b41ad9a89ba1e34508d8c005a28fb3c9b"
+    },
+    {
+      "legacy_station_id": 74,
+      "site_id": "IDK15",
+      "filename": "USArray.IDK15.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDK15.2008/USArray.IDK15.2008.edi",
+      "bytes": 12483,
+      "sha256": "f269c442bd4f9ca2b003d43b567d95cc9b3a96a94821a21003b84783cf038f41"
+    },
+    {
+      "legacy_station_id": 75,
+      "site_id": "IDK16",
+      "filename": "USArray.IDK16.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDK16.2008/USArray.IDK16.2008.edi",
+      "bytes": 12483,
+      "sha256": "38af94b9258ff356671f1af086cebd97ea743d7feb26017b226e906b31c7d73d"
+    },
+    {
+      "legacy_station_id": 76,
+      "site_id": "IDL10",
+      "filename": "USArray.IDL10.2007.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2007/MT_TF_USArray.IDL10.2007/USArray.IDL10.2007.edi",
+      "bytes": 12452,
+      "sha256": "93a8389a3097a03cf3715acc103b45f9e56ab300e7c84106c5e033ccd55f4920"
+    },
+    {
+      "legacy_station_id": 77,
+      "site_id": "IDL11",
+      "filename": "USArray.IDL11.2007.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2007/MT_TF_USArray.IDL11.2007/USArray.IDL11.2007.edi",
+      "bytes": 12445,
+      "sha256": "40b53599e0bcc4f9b85dc2adeac8df27e95270d301caa8ced2590d98fe8c0141"
+    },
+    {
+      "legacy_station_id": 78,
+      "site_id": "IDL12",
+      "filename": "USArray.IDL12.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDL12.2008/USArray.IDL12.2008.edi",
+      "bytes": 12469,
+      "sha256": "f0ed80532bbff1266e272b7de3af8c0b52971f662ffcf83946c8164811f91f01"
+    },
+    {
+      "legacy_station_id": 79,
+      "site_id": "IDL13",
+      "filename": "USArray.IDL13.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDL13.2008/USArray.IDL13.2008.edi",
+      "bytes": 12467,
+      "sha256": "5918f068766c4e2790a0246b9eba90701594a471f86cb95b0d56307eeb13d8fc"
+    },
+    {
+      "legacy_station_id": 80,
+      "site_id": "IDL14",
+      "filename": "USArray.IDL14.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDL14.2008/USArray.IDL14.2008.edi",
+      "bytes": 12469,
+      "sha256": "3b8963c9232a8bb97d7630f4fbd50fe25b21901dd8bbbe2998571b5d8225e700"
+    },
+    {
+      "legacy_station_id": 81,
+      "site_id": "IDL15",
+      "filename": "USArray.IDL15.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDL15.2008/USArray.IDL15.2008.edi",
+      "bytes": 12468,
+      "sha256": "cb64137689af4ba5ba4399ac6609b863b0c2d7115afeb405db022fb0507cc63d"
+    },
+    {
+      "legacy_station_id": 82,
+      "site_id": "IDL16",
+      "filename": "USArray.IDL16.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.IDL16.2008/USArray.IDL16.2008.edi",
+      "bytes": 12488,
+      "sha256": "5654d9fd1a3979bacae127a273f90d9fd4e87fbcd274a28b208abe4ce263d32f"
+    },
+    {
+      "legacy_station_id": 124,
+      "site_id": "MTF13",
+      "filename": "USArray.MTF13.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.MTF13.2008/USArray.MTF13.2008.edi",
+      "bytes": 12469,
+      "sha256": "f986ae84661e130ed240f29c04896baf048f0a2bb52f8cdb185ac959ca5721db"
+    },
+    {
+      "legacy_station_id": 125,
+      "site_id": "MTF14",
+      "filename": "USArray.MTF14.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.MTF14.2008/USArray.MTF14.2008.edi",
+      "bytes": 12467,
+      "sha256": "0d4e2599959439da738ef621a27e4e3bf088e7f752f0d285e4d606f8ffde12ec"
+    },
+    {
+      "legacy_station_id": 126,
+      "site_id": "MTF15",
+      "filename": "USArray.MTF15.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.MTF15.2008/USArray.MTF15.2008.edi",
+      "bytes": 12467,
+      "sha256": "d4a356a680335b81f68749456961164887de9fd0fe75f960a07b35f7d524f7bd"
+    },
+    {
+      "legacy_station_id": 127,
+      "site_id": "MTF16",
+      "filename": "USArray.MTF16.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.MTF16.2008/USArray.MTF16.2008.edi",
+      "bytes": 12469,
+      "sha256": "ba0bf3214e9f27814492bca9ddf7fa9be385080726e317d8dfd17b1daf1fb2c4"
+    },
+    {
+      "legacy_station_id": 128,
+      "site_id": "MTF17",
+      "filename": "USArray.MTF17.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.MTF17.2008/USArray.MTF17.2008.edi",
+      "bytes": 12467,
+      "sha256": "a5cf8ef37a5c7e2cb8a4e407c366f74ffd67d9e1909d1bda4b498ea1900625d1"
+    },
+    {
+      "legacy_station_id": 129,
+      "site_id": "MTF18",
+      "filename": "USArray.MTF18.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.MTF18.2009/USArray.MTF18.2009.edi",
+      "bytes": 12472,
+      "sha256": "376b129e30d8b405dba60a3652aa367073ec0283e024578c9222d985966c9ef3"
+    },
+    {
+      "legacy_station_id": 130,
+      "site_id": "MTF19",
+      "filename": "USArray.MTF19.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.MTF19.2009/USArray.MTF19.2009.edi",
+      "bytes": 12482,
+      "sha256": "eb0be0b72aa41a06740a3c2319b71e830d9aa6e2d91c7bccb031c1c43220a3a2"
+    },
+    {
+      "legacy_station_id": 131,
+      "site_id": "MTF20",
+      "filename": "USArray.MTF20.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.MTF20.2009/USArray.MTF20.2009.edi",
+      "bytes": 12466,
+      "sha256": "244fa93838462fac7f29f594f2e6151377f419b2372edc1064d79c8b9f8ed36a"
+    },
+    {
+      "legacy_station_id": 133,
+      "site_id": "MTG14",
+      "filename": "USArray.MTG14.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.MTG14.2008/USArray.MTG14.2008.edi",
+      "bytes": 12484,
+      "sha256": "bfe1814cba104fd14fd03e62843df024c000205c49751e69ef53e48c4a3ee2fc"
+    },
+    {
+      "legacy_station_id": 134,
+      "site_id": "MTG15",
+      "filename": "USArray.MTG15.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.MTG15.2008/USArray.MTG15.2008.edi",
+      "bytes": 12461,
+      "sha256": "bd51c854a71d88795211aa296b76a7b2ee79d14859684dbe304d1ef848d48ed5"
+    },
+    {
+      "legacy_station_id": 135,
+      "site_id": "MTG16",
+      "filename": "USArray.MTG16.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.MTG16.2008/USArray.MTG16.2008.edi",
+      "bytes": 11798,
+      "sha256": "85eef959d2592f8c4aeb8abf5eee344f8ec5d07bad6594a8fbe88083665db406"
+    },
+    {
+      "legacy_station_id": 136,
+      "site_id": "MTG17",
+      "filename": "USArray.MTG17.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.MTG17.2008/USArray.MTG17.2008.edi",
+      "bytes": 12467,
+      "sha256": "6767da881855ebb82e91a5d9fe3fe571792e8fae47b63a5991919780197a3329"
+    },
+    {
+      "legacy_station_id": 137,
+      "site_id": "MTG18",
+      "filename": "USArray.MTG18.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.MTG18.2009/USArray.MTG18.2009.edi",
+      "bytes": 12461,
+      "sha256": "722b249d90165fe4559c03aed63d5029df9b3809a7253c1f68b7308739e75a2a"
+    },
+    {
+      "legacy_station_id": 138,
+      "site_id": "MTG19",
+      "filename": "USArray.MTG19.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.MTG19.2009/USArray.MTG19.2009.edi",
+      "bytes": 12462,
+      "sha256": "1ccd0de7b9facd6d0add07e11c9e82e475de492566844cbd323041e251cbe774"
+    },
+    {
+      "legacy_station_id": 139,
+      "site_id": "MTG20",
+      "filename": "USArray.MTG20.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.MTG20.2009/USArray.MTG20.2009.edi",
+      "bytes": 12464,
+      "sha256": "6aa9e4993033abeac88116d532e0d9a44b5cf7fd244a8691338e791beeafff5b"
+    },
+    {
+      "legacy_station_id": 140,
+      "site_id": "MTH15",
+      "filename": "USArray.MTH15.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.MTH15.2008/USArray.MTH15.2008.edi",
+      "bytes": 12466,
+      "sha256": "bcc67dda8c4abd847b452e911f9b4d38a4a8c8f012635b7b18aeaff9a5847e6c"
+    },
+    {
+      "legacy_station_id": 141,
+      "site_id": "MTH16",
+      "filename": "USArray.MTH16.2008.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2008/MT_TF_USArray.MTH16.2008/USArray.MTH16.2008.edi",
+      "bytes": 12456,
+      "sha256": "27a4de02ab3bf41da4a11136ec73614e850e31aed2c15061eecfc1c92315be64"
+    },
+    {
+      "legacy_station_id": 144,
+      "site_id": "NVM09",
+      "filename": "USArray.NVM09.2010.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2010/MT_TF_USArray.NVM09.2010/USArray.NVM09.2010.edi",
+      "bytes": 12434,
+      "sha256": "b25fc7c302822521ea815fe09428d613f43e92e5d6730c2a75010c2429feebc5"
+    },
+    {
+      "legacy_station_id": 145,
+      "site_id": "NVM10",
+      "filename": "USArray.NVM10.2010.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2010/MT_TF_USArray.NVM10.2010/USArray.NVM10.2010.edi",
+      "bytes": 12430,
+      "sha256": "83ee4a852723f7f2416edd0c0a0b8f7864c427fb370831b8645aaded2194fb32"
+    },
+    {
+      "legacy_station_id": 147,
+      "site_id": "NVM11",
+      "filename": "USArray.NVM11.2010.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2010/MT_TF_USArray.NVM11.2010/USArray.NVM11.2010.edi",
+      "bytes": 12435,
+      "sha256": "d41b69f6095bd2d1e0608c2ec124aae94cf2a59bcda5483d944ace8371048ac9"
+    },
+    {
+      "legacy_station_id": 148,
+      "site_id": "NVM12",
+      "filename": "USArray.NVM12.2010.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2010/MT_TF_USArray.NVM12.2010/USArray.NVM12.2010.edi",
+      "bytes": 12435,
+      "sha256": "7cb7704673e72de4d2c977a2d94171c067ae16f6355fd727ddc81e318cf32f1f"
+    },
+    {
+      "legacy_station_id": 149,
+      "site_id": "NVM13",
+      "filename": "USArray.NVM13.2010.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2010/MT_TF_USArray.NVM13.2010/USArray.NVM13.2010.edi",
+      "bytes": 12438,
+      "sha256": "6c76e0b8e172292c2e88a2e8c5de64c95eef013c3bc2fedf256551bc2784de6c"
+    },
+    {
+      "legacy_station_id": 173,
+      "site_id": "ORF09",
+      "filename": "USArray.ORF09.2006.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2006/MT_TF_USArray.ORF09.2006/USArray.ORF09.2006.edi",
+      "bytes": 12451,
+      "sha256": "48a14a00b11560fa188f553a088a008bf242b16eab6d930d2bb7e48362aab7bc"
+    },
+    {
+      "legacy_station_id": 174,
+      "site_id": "ORF10",
+      "filename": "USArray.ORF10.2006.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2006/MT_TF_USArray.ORF10.2006/USArray.ORF10.2006.edi",
+      "bytes": 12476,
+      "sha256": "c76e1d731b3623526d169ab6ae5f38d8f89cf7e0d08e4d951676f23e8ba1d43e"
+    },
+    {
+      "legacy_station_id": 181,
+      "site_id": "ORG09",
+      "filename": "USArray.ORG09.2006.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2006/MT_TF_USArray.ORG09.2006/USArray.ORG09.2006.edi",
+      "bytes": 12462,
+      "sha256": "78d2296c50c459b8d5465f946ea5463f50fd97513e6ccc5ab67ad3515b4b8a81"
+    },
+    {
+      "legacy_station_id": 182,
+      "site_id": "ORG10",
+      "filename": "USArray.ORG10.2006.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2006/MT_TF_USArray.ORG10.2006/USArray.ORG10.2006.edi",
+      "bytes": 12451,
+      "sha256": "a9c9543ea584f9483b6007b5e45e300ff32ff9608340749e5c23b65b411b4b00"
+    },
+    {
+      "legacy_station_id": 189,
+      "site_id": "ORH09",
+      "filename": "USArray.ORH09.2006.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2006/MT_TF_USArray.ORH09.2006/USArray.ORH09.2006.edi",
+      "bytes": 12448,
+      "sha256": "64f2db08546fa92d571b54d87a8b2d3fe14306e6e6c2a6f50ec4100cfb59439f"
+    },
+    {
+      "legacy_station_id": 197,
+      "site_id": "ORI09",
+      "filename": "USArray.ORI09.2006.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2006/MT_TF_USArray.ORI09.2006/USArray.ORI09.2006.edi",
+      "bytes": 12463,
+      "sha256": "5b5b8faac294a93adec639b9b8188d2dc044ecac1fd996e6c8ea8f742894e01f"
+    },
+    {
+      "legacy_station_id": 205,
+      "site_id": "ORJ09",
+      "filename": "USArray.ORJ09.2006.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2006/MT_TF_USArray.ORJ09.2006/USArray.ORJ09.2006.edi",
+      "bytes": 12446,
+      "sha256": "b0887aef06c4c08df0be16bea69195ac4ffa405a6ac680fee90b58c277bfbc6f"
+    },
+    {
+      "legacy_station_id": 214,
+      "site_id": "ORK09",
+      "filename": "USArray.ORK09.2006.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2006/MT_TF_USArray.ORK09.2006/USArray.ORK09.2006.edi",
+      "bytes": 12447,
+      "sha256": "18734c6d9bc43d0a8fb28c29487a073b59374b33ee923b4c0847dd4ec4ce1d8e"
+    },
+    {
+      "legacy_station_id": 222,
+      "site_id": "ORL09",
+      "filename": "USArray.ORL09.2006.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2006/MT_TF_USArray.ORL09.2006/USArray.ORL09.2006.edi",
+      "bytes": 12452,
+      "sha256": "e695a6347914309a9c7b00cee35fd63974fbb3d9e34d5373945b7210aa889ba7"
+    },
+    {
+      "legacy_station_id": 231,
+      "site_id": "UTM14",
+      "filename": "USArray.UTM14.2011.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2011/MT_TF_USArray.UTM14.2011/USArray.UTM14.2011.edi",
+      "bytes": 12439,
+      "sha256": "619586027ba231016b880c697223d2c839bafaf17188ca7c16143fff424efb7f"
+    },
+    {
+      "legacy_station_id": 232,
+      "site_id": "UTM15",
+      "filename": "USArray.UTM15.2011.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2011/MT_TF_USArray.UTM15.2011/USArray.UTM15.2011.edi",
+      "bytes": 12447,
+      "sha256": "d689f74eb67a9a5bcac677d9928512e928a378f24c21cde0c737948629260b8f"
+    },
+    {
+      "legacy_station_id": 233,
+      "site_id": "UTM16",
+      "filename": "USArray.UTM16.2011.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2011/MT_TF_USArray.UTM16.2011/USArray.UTM16.2011.edi",
+      "bytes": 12443,
+      "sha256": "ae1491b502ea27fd2e0dba91d2b8fe837e7ef9920e362d43ae1b9e5efd96f60e"
+    },
+    {
+      "legacy_station_id": 300,
+      "site_id": "WYH18",
+      "filename": "USArray.WYH18.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYH18.2009/USArray.WYH18.2009.edi",
+      "bytes": 12466,
+      "sha256": "a4814090ec750edf7a81d0fce0927920a77a2c266228c85689c972bb3a248021"
+    },
+    {
+      "legacy_station_id": 301,
+      "site_id": "WYH19",
+      "filename": "USArray.WYH19.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYH19.2009/USArray.WYH19.2009.edi",
+      "bytes": 12459,
+      "sha256": "f2e1acfa2fb61c81254bb0b58dc57a8e10f3a60b5a67e045d003aaaa1527c56a"
+    },
+    {
+      "legacy_station_id": 302,
+      "site_id": "WYH20",
+      "filename": "USArray.WYH20.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYH20.2009/USArray.WYH20.2009.edi",
+      "bytes": 12457,
+      "sha256": "ff8e2f81b79f8e04db793be8d53ff63794627006e18c66de58361ca22ed9eef9"
+    },
+    {
+      "legacy_station_id": 304,
+      "site_id": "WYI17",
+      "filename": "USArray.WYI17.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYI17.2009/USArray.WYI17.2009.edi",
+      "bytes": 12461,
+      "sha256": "297f7d144420f063baa35bd3433948bea4450fb7c732ea5ebb7d2794325a4a88"
+    },
+    {
+      "legacy_station_id": 305,
+      "site_id": "WYI18",
+      "filename": "USArray.WYI18.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYI18.2009/USArray.WYI18.2009.edi",
+      "bytes": 12461,
+      "sha256": "0cc87d1e4295f11f86f0a4c5954e2cf4fea900aa1e590ea6ef13d16440e9efd6"
+    },
+    {
+      "legacy_station_id": 306,
+      "site_id": "WYI19",
+      "filename": "USArray.WYI19.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYI19.2009/USArray.WYI19.2009.edi",
+      "bytes": 12475,
+      "sha256": "10e814d9086f073091424a21c9249701f0fd7a22a9e1f0b4bcd085a1a9db51de"
+    },
+    {
+      "legacy_station_id": 307,
+      "site_id": "WYI20",
+      "filename": "USArray.WYI20.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYI20.2009/USArray.WYI20.2009.edi",
+      "bytes": 12462,
+      "sha256": "e5654641a37b288c23782633aae65fb1ea516dd11dd3445e6b8efe88700d441c"
+    },
+    {
+      "legacy_station_id": 309,
+      "site_id": "WYJ17",
+      "filename": "USArray.WYJ17.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYJ17.2009/USArray.WYJ17.2009.edi",
+      "bytes": 12471,
+      "sha256": "759cd34508e2da8cda6858ed8c5a32e9fe0ba6aa85d923cd2ab79fcc46d7a560"
+    },
+    {
+      "legacy_station_id": 310,
+      "site_id": "WYJ18",
+      "filename": "USArray.WYJ18.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYJ18.2009/USArray.WYJ18.2009.edi",
+      "bytes": 12463,
+      "sha256": "9de6393d1e559cb5db45c8b135caaa8e4f8829f114937d66fc8c1e179c3c6df1"
+    },
+    {
+      "legacy_station_id": 311,
+      "site_id": "WYJ19",
+      "filename": "USArray.WYJ19.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYJ19.2009/USArray.WYJ19.2009.edi",
+      "bytes": 12468,
+      "sha256": "02ead3a52ee2fd5148eb83d9d34d42235880b6b671d51fddde39e6ff3d9cb6f4"
+    },
+    {
+      "legacy_station_id": 312,
+      "site_id": "WYJ20",
+      "filename": "USArray.WYJ20.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYJ20.2009/USArray.WYJ20.2009.edi",
+      "bytes": 12463,
+      "sha256": "df3ae0b83c0c822b3bc109d09a93728bb91a093bb2533932bab5ad906924ffff"
+    },
+    {
+      "legacy_station_id": 314,
+      "site_id": "WYK17",
+      "filename": "USArray.WYK17.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYK17.2009/USArray.WYK17.2009.edi",
+      "bytes": 12486,
+      "sha256": "ff3cefaf5fa70901bd6a6b33dbd620796dca8349af1660f33479aabd2b23a759"
+    },
+    {
+      "legacy_station_id": 315,
+      "site_id": "WYK18",
+      "filename": "USArray.WYK18.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYK18.2009/USArray.WYK18.2009.edi",
+      "bytes": 12463,
+      "sha256": "3066c73eb58bc2b5ec74039fe77016f2e55330c5814de4cca3b10823b81f0798"
+    },
+    {
+      "legacy_station_id": 316,
+      "site_id": "WYK19",
+      "filename": "USArray.WYK19.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYK19.2009/USArray.WYK19.2009.edi",
+      "bytes": 12468,
+      "sha256": "d6327fb881050e00ac326c550ca2c3bfa50ec4bd2f17ede8c932f6552b3033cc"
+    },
+    {
+      "legacy_station_id": 317,
+      "site_id": "WYK20",
+      "filename": "USArray.WYK20.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYK20.2009/USArray.WYK20.2009.edi",
+      "bytes": 12472,
+      "sha256": "9103f04bfbcdbf4c5af1597b0b0e347e4b6932730221a716b125aefb7625c842"
+    },
+    {
+      "legacy_station_id": 319,
+      "site_id": "WYL17",
+      "filename": "USArray.WYL17.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYL17.2009/USArray.WYL17.2009.edi",
+      "bytes": 12464,
+      "sha256": "5584dc402659eab9d6e38626dc50d5adf9a48f4d9057089c57911fd695045ccc"
+    },
+    {
+      "legacy_station_id": 320,
+      "site_id": "WYL18",
+      "filename": "USArray.WYL18.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYL18.2009/USArray.WYL18.2009.edi",
+      "bytes": 12469,
+      "sha256": "d1cd60bbb1134d87c12ace1050db4eeba5fe45d3612986379042a3972364b666"
+    },
+    {
+      "legacy_station_id": 321,
+      "site_id": "WYL19",
+      "filename": "USArray.WYL19.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYL19.2009/USArray.WYL19.2009.edi",
+      "bytes": 12468,
+      "sha256": "a18fbab006f985c63a234c7a74983e1b44968b6aa730aef077c464b99676f87c"
+    },
+    {
+      "legacy_station_id": 322,
+      "site_id": "WYL20",
+      "filename": "USArray.WYL20.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYL20.2009/USArray.WYL20.2009.edi",
+      "bytes": 12475,
+      "sha256": "0009b3ed0ac2f932db659018fc17448980d1934a0bb35abe0da6260b6ba783d4"
+    },
+    {
+      "legacy_station_id": 324,
+      "site_id": "WYM17",
+      "filename": "USArray.WYM17.2011.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2011/MT_TF_USArray.WYM17.2011/USArray.WYM17.2011.edi",
+      "bytes": 12440,
+      "sha256": "c5a53d5aa0f161e1369fe046ab7eadf7ee3b144c955a98c45677e3754de8a072"
+    },
+    {
+      "legacy_station_id": 325,
+      "site_id": "WYM18",
+      "filename": "USArray.WYM18.2011.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2011/MT_TF_USArray.WYM18.2011/USArray.WYM18.2011.edi",
+      "bytes": 12441,
+      "sha256": "587a320d89e27df576d69325271c06a62b8549deea7a05ac9daae19e6c3bcbc9"
+    },
+    {
+      "legacy_station_id": 326,
+      "site_id": "WYM19",
+      "filename": "USArray.WYM19.2011.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2011/MT_TF_USArray.WYM19.2011/USArray.WYM19.2011.edi",
+      "bytes": 12450,
+      "sha256": "d2f1d5ba00b31c5c516f9ee016b8d025a2c3377d057458e8a2e6477f63444179"
+    },
+    {
+      "legacy_station_id": 327,
+      "site_id": "WYM20",
+      "filename": "USArray.WYM20.2011.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2011/MT_TF_USArray.WYM20.2011/USArray.WYM20.2011.edi",
+      "bytes": 12451,
+      "sha256": "ac62bce9f50149d972bc0d79856786c1f0f229078f9512ca3cfe977ee8495e02"
+    },
+    {
+      "legacy_station_id": 329,
+      "site_id": "WYYS1",
+      "filename": "USArray.WYYS1.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYYS1.2009/USArray.WYYS1.2009.edi",
+      "bytes": 12462,
+      "sha256": "4c0a2e7609d7d7933c53b0dd537122870973b41ed0e155600647290afd1cedf3"
+    },
+    {
+      "legacy_station_id": 330,
+      "site_id": "WYYS2",
+      "filename": "USArray.WYYS2.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYYS2.2009/USArray.WYYS2.2009.edi",
+      "bytes": 12472,
+      "sha256": "eb2a87611a7522fe96bb8b9d076575cd55be98b3d9f09dbaa6973ec4914e0669"
+    },
+    {
+      "legacy_station_id": 331,
+      "site_id": "WYYS3",
+      "filename": "USArray.WYYS3.2009.edi",
+      "url": "https://data.earthscope.org/archive/seismology/products/emtf/surveys/2009/MT_TF_USArray.WYYS3.2009/USArray.WYYS3.2009.edi",
+      "bytes": 12465,
+      "sha256": "a8978b05967643c8b86600191af3d58a7fd823acc2849aa89b770a5edbad8980"
+    }
+  ]
+}

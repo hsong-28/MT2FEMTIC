@@ -1,0 +1,20 @@
+# Synthetic 100 ohm-m half-space at 1 Hz; complete conversion example.
+# Period Code Lat Lon X Y Z Component Real Imag Error
+> Full_Impedance
+> exp(+i\omega t)
+> [mV/km]/[nT]
+> 0
+> 0 0
+> 1 1
+1 S01 0 0 1000 2000 -100 ZXX 0 0 0.01
+1 S01 0 0 1000 2000 -100 ZXY 15.811388300841896 15.811388300841896 0.01
+1 S01 0 0 1000 2000 -100 ZYX -15.811388300841896 -15.811388300841896 0.01
+1 S01 0 0 1000 2000 -100 ZYY 0 0 0.01
+> Full_Vertical_Components
+> exp(+i\omega t)
+> []
+> 0
+> 0 0
+> 1 1
+1 S01 0 0 1000 2000 -100 TX 0 0 0.01
+1 S01 0 0 1000 2000 -100 TY 0 0 0.01

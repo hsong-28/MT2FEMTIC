@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "config_kind": "data",
+  "dataset_id": "replace-with-survey-id",
+  "source": {
+    "type": "edi",
+    "path": "0-EDI",
+    "impedance_unit": "mv_per_km_per_nt",
+    "time_convention": "exp_plus_iwt",
+    "allow_time_convention_override": false,
+    "edi_pattern": "*.edi",
+    "edi_list_file": null,
+    "station_name_source": "edi_metadata"
+  },
+  "coordinates": {
+    "geographic_crs": "EPSG:4326",
+    "projected_crs": "EPSG:32633",
+    "origin_easting_m": 500000.0,
+    "origin_northing_m": 6000000.0,
+    "model_axis_azimuth_deg": 0.0,
+    "vertical_datum_elevation_m": 0.0,
+    "round_trip_tolerance_m": 0.01,
+    "modem_axis_convention": "north_east"
+  },
+  "selection": {
+    "frequency_policy": "exact",
+    "periods_s": [1.0, 10.0, 100.0],
+    "relative_tolerance": 1e-10,
+    "impedance_error_floor_fraction": 0.05,
+    "vtf_error_floor_absolute": 0.03,
+    "max_vtf_period_s": 10000.0
+  },
+  "topography": {
+    "enabled": false,
+    "path": null,
+    "columns": null
+  },
+  "femtic": {
+    "observation_refinement": {
+      "radius_km": 0.5,
+      "level": 1,
+      "weight": 0.5
+    }
+  },
+  "run": {
+    "overwrite": false,
+    "resume": false
+  }
+}

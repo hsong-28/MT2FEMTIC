@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "config_kind": "mesh",
+  "mesh_id": "compact-dhexa",
+  "mesh": {
+    "backend": "dhexa",
+    "geometry_mode": "configured_axes",
+    "configured_axes": {
+      "x_max_km": 5.0,
+      "x_uniform_limit_km": 5.0,
+      "x_spacing_km": 1.0,
+      "x_padding_factor": 1.3,
+      "y_max_km": 5.0,
+      "y_uniform_limit_km": 5.0,
+      "y_spacing_km": 1.0,
+      "y_padding_factor": 1.3,
+      "z_max_km": 2.0,
+      "z_spacing_km": 0.5,
+      "z_padding_factor": 1.2
+    },
+    "modem_model_path": null,
+    "observation_refinement": "from_data",
+    "air_layers": {
+      "scheme": "geometric",
+      "count": 2,
+      "top_km": 5.0,
+      "bottom_km": 0.5
+    },
+    "initial_resistivity_ohm_m": 100.0,
+    "air_resistivity_ohm_m": 10000000000.0,
+    "sea_resistivity_ohm_m": 0.3,
+    "model_round_trip_tolerance": 1e-12,
+    "station_coordinate_tolerance_km": 1e-9
+  },
+  "topography": {
+    "mode": "flat",
+    "path": null,
+    "max_interpolation_points": 3,
+    "search_radius_km": 100.0,
+    "tolerance_km": 0.001
+  },
+  "generator": {
+    "path": "SET_PATH_TO_MAKEDHEXAMESH",
+    "version": "SET_GENERATOR_VERSION",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "timeout_s": 600
+  },
+  "run": {"overwrite": false, "resume": false}
+}

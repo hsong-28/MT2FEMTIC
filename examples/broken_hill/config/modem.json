@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "config_kind": "data",
+  "dataset_id": "broken-hill-modem",
+  "source": {
+    "type": "modem",
+    "path": "../input/modem/BH_31.dat",
+    "impedance_unit": "mv_per_km_per_nt",
+    "time_convention": "exp_plus_iwt",
+    "allow_time_convention_override": false,
+    "edi_pattern": "*.edi",
+    "edi_list_file": null,
+    "station_name_source": "edi_metadata"
+  },
+  "coordinates": {
+    "geographic_crs": "EPSG:4326",
+    "projected_crs": "EPSG:32754",
+    "origin_easting_m": 550540.3379438857,
+    "origin_northing_m": 6464365.28548603,
+    "model_axis_azimuth_deg": 0.0,
+    "vertical_datum_elevation_m": 0.0,
+    "round_trip_tolerance_m": 0.01,
+    "modem_axis_convention": "north_east"
+  },
+  "selection": {
+    "frequency_policy": "exact",
+    "periods_s": [
+      0.00333333,
+      0.00549883,
+      0.00907112,
+      0.0149642,
+      0.0246856,
+      0.0407226,
+      0.0671781,
+      0.11082,
+      0.182814,
+      0.301578,
+      0.497498,
+      0.820695,
+      1.35386,
+      2.23339,
+      3.68431,
+      6.07785,
+      10.0263,
+      16.5398,
+      27.2849,
+      45.0104,
+      74.2512,
+      122.489,
+      202.063,
+      333.333
+    ],
+    "relative_tolerance": 1e-10,
+    "impedance_error_floor_fraction": 0.0,
+    "vtf_error_floor_absolute": 0.03,
+    "max_vtf_period_s": 10000.0
+  },
+  "topography": {
+    "enabled": false,
+    "path": null,
+    "columns": null
+  },
+  "femtic": {
+    "observation_refinement": {
+      "radius_km": 0.5,
+      "level": 1,
+      "weight": 0.5
+    }
+  },
+  "run": {
+    "overwrite": false,
+    "resume": false
+  }
+}

@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mt2femtic"
+version = "0.1.0"
+description = "Validated 3-D MT data preparation and DHEXA meshing for FEMTIC"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{name = "Han Song", email = "han.song@tu-berlin.de"}]
+license = "MIT"
+license-files = ["LICENSE"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+  "matplotlib>=3.10,<4",
+  "numpy>=2,<3",
+  "pyproj>=3.7,<4",
+]
+
+[project.urls]
+Repository = "https://github.com/hsong-28/MT2FEMTIC"
+Issues = "https://github.com/hsong-28/MT2FEMTIC/issues"
+
+[project.optional-dependencies]
+conversion = ["netCDF4>=1.7,<2"]
+
+[project.scripts]
+mt2femtic = "mt2femtic.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
