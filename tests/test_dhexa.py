@@ -287,7 +287,9 @@ class DHexaTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "SHA-256 mismatch"):
                 verify_generator(config)
 
-    def test_linux_binary_uses_wsl_on_windows(self) -> None:
+    @patch("mt2femtic.dhexa.Path.resolve", autospec=True, side_effect=lambda path: path)
+    def test_linux_binary_uses_wsl_on_windows(self, _resolve_mock) -> None:
+        # Preserve the absolute Windows fixture paths on non-Windows test hosts.
         command = build_generator_command(
             Path("D:/tools/makeDHexaMesh"),
             Path("C:/runs/case"),
