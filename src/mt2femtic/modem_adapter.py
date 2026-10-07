@@ -58,17 +58,89 @@ def _resolve_convention(declared: str | None, config: SourceConfig) -> tuple[str
     return declared, False
 
 
+def read_modem_header(
+    lines: Sequence[str], *, allow_legacy: bool = False, allow_time_override: bool = False,
+) -> tuple[str, tuple[float, ...] | None]:
+    """Check units and the unrotated frame shared by data and conversion."""
+    headers = [line.lstrip()[1:].strip() for line in lines if line.lstrip().startswith(">")]
+    unit_names = {"[mv/km]/[nt]": "mv_per_km_per_nt", "[ohm]": "ohm", "ohm": "ohm"}
+    # Historical list files omit orientation, origin and counts. Their local
+    # north/east frame and vertical meaning must be declared in the configuration.
+    legacy = headers[1:] if headers and headers[0] == "Full_Impedance" else headers
+    if (allow_legacy and len(legacy) in (1, 2) and legacy[-1].lower() in unit_names
+            and (len(legacy) == 1 or _detect_header_convention(["> " + legacy[0]]))):
+        return unit_names[legacy[-1].lower()], None
+    if not headers or len(headers) % 6:
+        raise ValueError("ModEM data require complete six-line block headers")
+    units, origins = set(), set()
+    for offset in range(0, len(headers), 6):
+        kind, sign, unit, angle, origin, counts = headers[offset:offset + 6]
+        if kind not in {"Full_Impedance", "Off_Diagonal_Impedance", "Full_Vertical_Components"}:
+            raise ValueError(f"Unsupported ModEM data type: {kind}")
+        if _detect_header_convention(["> " + sign]) is None and not allow_time_override:
+            raise ValueError("Missing ModEM block time convention")
+        if float(angle) != 0:
+            raise ValueError("ModEM orientation must be zero; rotate the source explicitly first")
+        position = tuple(float(v) for v in origin.split())
+        if len(position) not in (2, 3) or not all(math.isfinite(v) for v in position):
+            raise ValueError("Invalid ModEM origin")
+        origins.add(position)
+        if not re.fullmatch(r"\d+\s+\d+", counts):
+            raise ValueError("Invalid ModEM period/station counts")
+        if kind == "Full_Vertical_Components":
+            if unit != "[]":
+                raise ValueError("ModEM tipper units must be []")
+        else:
+            if unit.lower() not in unit_names:
+                raise ValueError(f"Unsupported ModEM impedance units: {unit}")
+            units.add(unit_names[unit.lower()])
+    block = -1
+    rows_by_block = {}
+    header_index = 0
+    for line in lines:
+        if line.lstrip().startswith(">"):
+            block = header_index // 6
+            header_index += 1
+        elif line.strip() and not line.lstrip().startswith("#"):
+            tokens = line.split()
+            if block < 0 or header_index % 6 or len(tokens) != 11:
+                raise ValueError("ModEM rows must follow a complete block header and contain 11 columns")
+            is_tipper = headers[block * 6] == "Full_Vertical_Components"
+            allowed = ("TX", "TY", "TZX", "TZY") if is_tipper else ("ZXX", "ZXY", "ZYX", "ZYY")
+            if headers[block * 6] == "Off_Diagonal_Impedance":
+                allowed = ("ZXY", "ZYX")
+            if tokens[7].upper() not in allowed:
+                raise ValueError("ModEM component does not match its block type")
+            periods, names = rows_by_block.setdefault(block, (set(), set()))
+            periods.add(float(tokens[0]))
+            names.add(tokens[1])
+    for block in range(len(headers) // 6):
+        periods, names = rows_by_block.get(block, (set(), set()))
+        if tuple(map(int, headers[block * 6 + 5].split())) != (len(periods), len(names)):
+            raise ValueError("ModEM period/station counts do not match the block rows")
+    if len(units) > 1 or len(origins) != 1:
+        raise ValueError("ModEM blocks must share their impedance units and coordinate origin")
+    return next(iter(units), "ohm"), next(iter(origins))
+
+
 def read_modem_data(
     path: Path, config: SourceConfig, *, require_impedance: bool = True,
 ) -> Survey:
     if config.type != "modem":
         raise ValueError("ModEM adapter requires source.type=modem")
+    if config.modem_vertical_coordinate not in ("depth_m", "elevation_m"):
+        raise ValueError("source.modem_vertical_coordinate must be depth_m or elevation_m")
     source_path = Path(path)
     if not source_path.is_file():
         raise FileNotFoundError(f"ModEM data file does not exist: {source_path}")
     lines = source_path.read_text(encoding="ascii", errors="strict").splitlines()
     declared_convention = _detect_header_convention(lines)
     source_convention, used_override = _resolve_convention(declared_convention, config)
+    declared_unit, _origin = read_modem_header(
+        lines, allow_legacy=True, allow_time_override=config.allow_time_convention_override,
+    )
+    if declared_unit != config.impedance_unit:
+        raise ValueError(f"ModEM units {declared_unit} conflict with configured {config.impedance_unit}")
     impedance_scale = impedance_scale_to_ohm(config.impedance_unit)
 
     station_order: list[str] = []
@@ -90,7 +162,7 @@ def read_modem_data(
             longitude_deg = float(tokens[3])
             north_m = float(tokens[4])
             east_m = float(tokens[5])
-            elevation_m = float(tokens[6])
+            vertical_m = float(tokens[6])
             real_value = float(tokens[8])
             imag_value = float(tokens[9])
             standard_error = float(tokens[10])
@@ -102,7 +174,7 @@ def read_modem_data(
             longitude_deg,
             north_m,
             east_m,
-            elevation_m,
+            vertical_m,
             real_value,
             imag_value,
             standard_error,
@@ -122,7 +194,7 @@ def read_modem_data(
                 f"Unsupported ModEM component {raw_component} at line {line_number}"
             )
         component = COMPONENT_NAMES[raw_component]
-        coordinate = (longitude_deg, latitude_deg, north_m, east_m, elevation_m)
+        coordinate = (longitude_deg, latitude_deg, north_m, east_m, vertical_m)
         if station_name not in coordinates:
             station_order.append(station_name)
             coordinates[station_name] = coordinate
@@ -147,7 +219,7 @@ def read_modem_data(
         raise ValueError(f"No ModEM data rows found in {source_path}")
     stations: list[Station] = []
     for station_id, station_name in enumerate(station_order, start=1):
-        longitude_deg, latitude_deg, north_m, east_m, elevation_m = coordinates[station_name]
+        longitude_deg, latitude_deg, north_m, east_m, vertical_m = coordinates[station_name]
         samples: list[ResponseSample] = []
         for period_s in period_order[station_name]:
             components = rows[(station_name, period_s)]
@@ -169,12 +241,12 @@ def read_modem_data(
                 name=station_name,
                 longitude_deg=longitude_deg,
                 latitude_deg=latitude_deg,
-                elevation_m=elevation_m,
+                elevation_m=vertical_m if config.modem_vertical_coordinate == "elevation_m" else None,
                 north_m=north_m,
                 east_m=east_m,
                 model_x_km=None,
                 model_y_km=None,
-                surface_depth_km=None,
+                surface_depth_km=vertical_m / 1000 if config.modem_vertical_coordinate == "depth_m" else None,
                 samples=tuple(samples),
             )
         )
@@ -189,6 +261,7 @@ def read_modem_data(
             "source_time_convention": source_convention,
             "time_convention_override": used_override,
             "source_impedance_unit": config.impedance_unit,
+            "source_vertical_coordinate": config.modem_vertical_coordinate,
             "coordinate_mapping": "FEMTIC X=ModEM north; FEMTIC Y=ModEM east",
         },
     )

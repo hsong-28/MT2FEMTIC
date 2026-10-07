@@ -54,6 +54,24 @@ def valid_data_config_payload() -> dict[str, object]:
 
 
 class DataConfigTests(unittest.TestCase):
+    def test_modem_requires_explicit_vertical_coordinate(self) -> None:
+        payload = valid_data_config_payload()
+        payload["source"]["type"] = "modem"
+        with self.assertRaisesRegex(ValueError, "modem_vertical_coordinate"):
+            config_from_dict(payload)
+        for value in ("depth_m", "elevation_m"):
+            payload["source"]["modem_vertical_coordinate"] = value
+            self.assertEqual(config_from_dict(payload).source.modem_vertical_coordinate, value)
+        payload["source"]["modem_vertical_coordinate"] = "guess"
+        with self.assertRaisesRegex(ValueError, "modem_vertical_coordinate"):
+            config_from_dict(payload)
+
+    def test_nonzero_model_azimuth_is_rejected(self) -> None:
+        payload = valid_data_config_payload()
+        payload["coordinates"]["model_axis_azimuth_deg"] = 90
+        with self.assertRaisesRegex(ValueError, "azimuth.*zero"):
+            config_from_dict(payload)
+
     def test_data_config_has_no_mesh_or_generator_dependency(self) -> None:
         try:
             config = config_from_dict(

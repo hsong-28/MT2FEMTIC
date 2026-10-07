@@ -24,28 +24,41 @@ and Jif3D's positive-time NetCDF convention.
   `projected_crs` with `always_xy=true`.
 - The configured easting and northing origin is subtracted before rotation.
 - At `model_axis_azimuth_deg = 0`, FEMTIC model X is north and model Y is east.
-- Positive azimuth rotates the horizontal axes through the single transform
-  implemented in `conventions.py`.
+- Data preparation requires `model_axis_azimuth_deg = 0`. Nonzero model-axis
+  azimuths and nonzero ModEM header orientations are rejected: rotating station
+  coordinates alone would leave responses in a different frame. Response and
+  error rotation is not implemented. EDI responses must already use north/east axes.
 - FEMTIC model coordinates are kilometres.
 - ModEM north/east offsets are authoritative when
   `modem_axis_convention = "north_east"`; geographic columns are retained for
   provenance but do not replace those offsets.
 - The configured round-trip tolerance is in metres.
 
-Changing the CRS, origin, or azimuth changes station and topography model
+Changing the CRS or origin changes station and topography model
 coordinates. Confirm `projection/stations_projected.csv`,
 `coordinate_convention_audit.json`, and `qa/station_topography.png` before
 meshing.
 
 ## Vertical coordinates
 
-Source elevation is positive upward in metres. FEMTIC and DHEXA depth is
+EDI source elevation is positive upward in metres. FEMTIC and DHEXA depth is
 positive downward in kilometres relative to
 `vertical_datum_elevation_m`:
 
 ```text
 depth_km = (vertical_datum_elevation_m - elevation_m) / 1000
 ```
+
+ModEM data preparation requires `source.modem_vertical_coordinate`:
+
+- `depth_m`: standard positive-down Z in the existing model frame;
+  `depth_km = Z_m / 1000`. No datum shift is applied and elevation is left unknown.
+- `elevation_m`: explicit compatibility with historical list files whose seventh
+  column stores positive-up elevation; use the elevation formula above.
+
+There is no inferred default. Set this field before rerunning an older ModEM
+configuration, even if all Z values are zero. For EDI, omit it or use `null`.
+The declaration is recorded in the resolved configuration and source metadata.
 
 Normalized mesh topography files contain `model_x_km model_y_km depth_km`.
 
@@ -64,6 +77,19 @@ the configured source convention.
 - `(mV/km)/nT` impedance is multiplied by `1000 * mu0` to obtain ohms.
 - VTF is dimensionless.
 - Complex values and their standard errors must be finite.
+- ModEM file units must agree with `source.impedance_unit`. A time-convention
+  override does not override units or orientation. Full headers use the same
+  type, origin and count checks as `convert`; historical abbreviated impedance
+  headers remain supported by `data` in the declared north/east frame.
+
+The shared checks are in `modem_adapter.read_modem_header`; vertical values
+are normalized by `read_modem_data` and `conventions.project_station`.
+The native Jif3D `ReadImpedancesFromModEM`/`WriteImpedancesToModEM` routines
+preserve station Z in metres; see the [conversion sources](conversion.md#traceability-and-validation).
+Explicit elevation compatibility and rejection of unsupported rotations are
+MT2FEMTIC policies. `test_modem_adapter`, `test_conventions` and
+`test_data_pipeline` check nonzero depth, datum handling, metadata conflicts
+and rejection before publishing FEMTIC observations.
 
 ## Frequency selection and errors
 

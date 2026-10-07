@@ -34,10 +34,10 @@ and all 98 EDI inputs.
 ## Run and inspect each stage
 
 ```powershell
-python .\scripts\00_check_input.py --root $SurveyRoot
-python .\scripts\01_read_edi.py --root $SurveyRoot
-python .\scripts\02_project_sites.py --root $SurveyRoot
-python .\scripts\03_select_data.py --root $SurveyRoot
+python .\examples\manual_workflow\00_check_input.py --root $SurveyRoot
+python .\examples\manual_workflow\01_read_edi.py --root $SurveyRoot
+python .\examples\manual_workflow\02_project_sites.py --root $SurveyRoot
+python .\examples\manual_workflow\03_select_data.py --root $SurveyRoot
 ```
 
 Stage 00 is a read-only inventory check and does not emit a status field. Stop

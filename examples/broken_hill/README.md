@@ -86,6 +86,8 @@ from the locally refined historical H2 mesh.
   FEMTIC `exp(-i*omega*t)` convention conjugates it once.
 - At zero azimuth, FEMTIC X is north and Y is east. Elevation is positive up in
   metres; FEMTIC depth is positive down in kilometres.
+- ModEM explicitly declares `modem_vertical_coordinate=depth_m`; all supplied
+  Z values are zero. EDI elevations remain positive up.
 - ModEM uses exact period selection and retains its supplied impedance errors.
 - EDI uses log-frequency linear interpolation without extrapolation and a 5%
   impedance error floor. Its time-convention override is explicit.

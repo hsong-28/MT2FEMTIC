@@ -21,8 +21,11 @@ the [FEMTIC/ModEM/Jif3D conversion example](../../docs/conversion.md).
 ## Adapt to another survey
 
 Copy this directory and replace its inputs. Set the source path, CRS, origin,
-axis azimuth, vertical datum, target periods, units, time convention, and error
+vertical datum, target periods, units, time convention, and error
 floors in the data configuration. Paths resolve relative to the JSON file.
+Keep `model_axis_azimuth_deg=0`; response rotation is not supported. Standard
+ModEM data require `source.modem_vertical_coordinate="depth_m"`. The bundled
+legacy `survey.dat` stores elevation and explicitly uses `"elevation_m"`.
 For EDI inventory and station naming, see [conventions](../../docs/conventions.md).
 Set `selection.impedance_error_floor_fraction` to `0.0` when accepted source
 errors must be preserved. A ModEM model belongs in the mesh configuration.

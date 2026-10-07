@@ -63,6 +63,8 @@ def project_station(
     station: Station,
     config: CoordinateConfig,
 ) -> tuple[Station, float]:
+    if config.model_axis_azimuth_deg != 0:
+        raise ValueError("model_axis_azimuth_deg must be zero; response rotation is not supported")
     has_local = station.north_m is not None or station.east_m is not None
     if has_local:
         if station.north_m is None or station.east_m is None:
@@ -119,14 +121,11 @@ def project_station(
         east_offset_m,
         config.model_axis_azimuth_deg,
     )
-    surface_depth_km = (
-        None
-        if station.elevation_m is None
-        else elevation_to_depth_km(
-            station.elevation_m,
-            config.vertical_datum_elevation_m,
+    surface_depth_km = station.surface_depth_km
+    if station.elevation_m is not None:
+        surface_depth_km = elevation_to_depth_km(
+            station.elevation_m, config.vertical_datum_elevation_m,
         )
-    )
     return (
         replace(
             station,

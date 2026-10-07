@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use MT2FEMTIC, please cite the study listed below."
+title: "MT2FEMTIC: validated 3-D MT data preparation and DHEXA meshing"
+type: software
+license: MIT
+authors:
+  - given-names: "Han"
+    family-names: "Song"
+    email: "han.song@tu-berlin.de"
+version: 0.1.0
+repository-code: "https://github.com/hsong-28/MT2FEMTIC"
+preferred-citation:
+  type: article
+  title: "Revealing the Non-uniqueness Inherent in MT Inversion: A Comparative Study of Influential Factors and Algorithm-Dependent Uncertainties in FEMTIC and ModEM with USArray MT Data"
+  authors:
+    - given-names: "Han"
+      family-names: "Song"
+    - given-names: "Yoshiya"
+      family-names: "Usui"
+    - given-names: "Makoto"
+      family-names: "Uyeshima"
+    - given-names: "Peng"
+      family-names: "Yu"
+    - given-names: "Dieno"
+      family-names: "Diba"
+    - given-names: "Bo"
+      family-names: "Yang"
+    - given-names: "Kiyoshi"
+      family-names: "Baba"
+    - given-names: "Takao"
+      family-names: "Koyama"
+  journal: "Surveys in Geophysics"
+  volume: "46"
+  start: 1079
+  end: 1135
+  year: 2025
+  doi: "10.1007/s10712-025-09901-y"

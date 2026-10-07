@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.verify_package import verify_package, write_checksum_manifest
+from tests.verify_package import verify_package, write_checksum_manifest
 
 
 def _write(path: Path, text: str) -> None:
@@ -16,18 +16,20 @@ def _write(path: Path, text: str) -> None:
 
 def _minimal_package(root: Path) -> None:
     _write(root / "LICENSE", "Test license\n")
+    _write(root / "src/LICENSE", "Test license\n")
+    _write(root / "src/README.md", "# MT2FEMTIC library\n")
     _write(root / "README.md", "# MT2FEMTIC\n")
-    _write(root / "THIRD_PARTY_NOTICES.md", "# Third-party notices\n")
+    _write(root / "docs" / "THIRD_PARTY_NOTICES.md", "# Third-party notices\n")
     _write(
-        root / "CITATION.cff",
+        root / "docs/CITATION.cff",
         'cff-version: 1.2.0\ntitle: "MT2FEMTIC"\nauthors:\n  - name: "Test Author"\nversion: 0.1.0\n',
     )
     _write(
-        root / "pyproject.toml",
+        root / "src/pyproject.toml",
         '[project]\nname = "mt2femtic"\nversion = "0.1.0"\n',
     )
     _write(root / "src" / "mt2femtic" / "__init__.py", '__version__ = "0.1.0"\n')
-    _write(root / "tests" / "fixtures" / "femticpy" / "LICENSE", "Fixture license\n")
+    _write(root / ".github/tests" / "fixtures" / "femticpy" / "LICENSE", "Fixture license\n")
 
 
 class VerifyPackageTests(unittest.TestCase):
@@ -35,11 +37,11 @@ class VerifyPackageTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             _minimal_package(root)
-            (root / "tests" / "fixtures" / "femticpy" / "LICENSE").unlink()
+            (root / ".github/tests" / "fixtures" / "femticpy" / "LICENSE").unlink()
             report = verify_package(root)
         self.assertFalse(report["passed"])
         self.assertIn(
-            "missing required file: tests/fixtures/femticpy/LICENSE",
+            "missing required file: .github/tests/fixtures/femticpy/LICENSE",
             report["errors"],
         )
 
@@ -88,7 +90,7 @@ class VerifyPackageTests(unittest.TestCase):
             _minimal_package(root)
             readme = root / "README.md"
             digest = hashlib.sha256(readme.read_bytes()).hexdigest()
-            _write(root / "SHA256SUMS.txt", f"{digest}  README.md\n")
+            _write(root / ".github/SHA256SUMS.txt", f"{digest}  README.md\n")
             report = verify_package(root)
         self.assertFalse(report["passed"])
         self.assertTrue(any("checksum coverage mismatch" in item for item in report["errors"]))
@@ -115,9 +117,11 @@ class VerifyPackageTests(unittest.TestCase):
             _minimal_package(root)
             entry_count = write_checksum_manifest(root)
             report = verify_package(root)
-        self.assertEqual(entry_count, 7)
+            manifest = (root / ".github/SHA256SUMS.txt").read_bytes()
+        self.assertEqual(entry_count, 9)
         self.assertTrue(report["passed"], json.dumps(report, indent=2))
-        self.assertEqual(report["checksum_entry_count"], 7)
+        self.assertEqual(report["checksum_entry_count"], 9)
+        self.assertNotIn(b"\r", manifest, "Checksum lists must be readable by POSIX sha256sum")
 
     def test_build_metadata_is_excluded_from_release_content(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -128,7 +132,7 @@ class VerifyPackageTests(unittest.TestCase):
             _write(root / "setup.cfg", "generated")
             report = verify_package(root)
         self.assertTrue(report["passed"], json.dumps(report, indent=2))
-        self.assertEqual(report["release_file_count"], 7)
+        self.assertEqual(report["release_file_count"], 9)
 
     def test_checkout_outputs_are_ignored_only_in_source_checkout(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -146,7 +150,7 @@ class VerifyPackageTests(unittest.TestCase):
             root = Path(temporary)
             _minimal_package(root)
             _write(
-                root / "CITATION.cff",
+                root / "docs/CITATION.cff",
                 'cff-version: 1.2.0\ntitle: "MT2FEMTIC"\nauthors:\n'
                 '  - name: "MT2FEMTIC contributors"\nversion: 0.1.0\n',
             )

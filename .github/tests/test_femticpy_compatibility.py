@@ -17,8 +17,8 @@ from mt2femtic.manifest import sha256_file
 from mt2femtic.selection import prepare_selected_survey
 
 
-ROOT = Path(__file__).parents[1]
-FIXTURE_ROOT = ROOT / "tests" / "fixtures" / "femticpy"
+ROOT = Path(__file__).parents[2]
+FIXTURE_ROOT = ROOT / ".github/tests" / "fixtures" / "femticpy"
 EDI = FIXTURE_ROOT / "synthetic_01.edi"
 
 
@@ -104,7 +104,7 @@ class FemticPyCompatibilityTests(unittest.TestCase):
 
     def test_compatibility_scope_is_explicit(self) -> None:
         report = (
-            ROOT / "docs" / "femticpy-compatibility.md"
+            ROOT / ".github/tests/fixtures/femticpy/PROVENANCE.md"
         ).read_text(encoding="utf-8")
         for heading in (
             "Agreements",
@@ -113,7 +113,7 @@ class FemticPyCompatibilityTests(unittest.TestCase):
             "Excluded scope",
         ):
             self.assertIn(heading, report)
-        notices = (ROOT / "THIRD_PARTY_NOTICES.md").read_text(encoding="utf-8")
+        notices = (ROOT / "docs" / "THIRD_PARTY_NOTICES.md").read_text(encoding="utf-8")
         self.assertIn("FEMTICPy", notices)
         self.assertIn("MIT", notices)
 

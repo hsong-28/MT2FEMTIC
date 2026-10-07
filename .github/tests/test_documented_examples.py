@@ -11,13 +11,12 @@ from pathlib import Path
 from mt2femtic.config import DataConfig, MeshCommandConfig, load_config
 
 
-ROOT = Path(__file__).parents[1]
+ROOT = Path(__file__).parents[2]
 
 
 class DocumentedExamplesTests(unittest.TestCase):
-    def test_source_manifest_includes_femticpy_license(self) -> None:
-        manifest = (ROOT / "MANIFEST.in").read_text(encoding="utf-8")
-        self.assertIn("include tests/fixtures/femticpy/LICENSE", manifest)
+    def test_library_license_matches_repository_license(self) -> None:
+        self.assertEqual((ROOT / "LICENSE").read_bytes(), (ROOT / "src/LICENSE").read_bytes())
 
     def test_validation_guide_covers_every_public_stage(self) -> None:
         guide_path = ROOT / "docs" / "validation.md"

@@ -14,7 +14,7 @@ from .femtic_writer import write_femtic_observe
 from .jif3d_io import read_jif3d, write_jif3d
 from .manifest import sha256_file
 from .model import ResponseSample, Station, Survey
-from .modem_adapter import _detect_header_convention, read_modem_data
+from .modem_adapter import _detect_header_convention, read_modem_data, read_modem_header
 
 
 FILENAMES = {"femtic": "observe.dat", "modem": "survey.dat", "jif3d": "survey.nc"}
@@ -54,65 +54,14 @@ def _read_femtic(path: Path) -> Survey:
 
 def _read_modem(path: Path) -> Survey:
     lines = path.read_text(encoding="ascii").splitlines()
-    headers = [line.lstrip()[1:].strip() for line in lines if line.lstrip().startswith(">")]
-    if not headers or len(headers) % 6:
-        raise ValueError("Conversion requires complete six-line ModEM block headers")
-    units, origins = set(), set()
-    for offset in range(0, len(headers), 6):
-        kind, sign, unit, angle, origin, counts = headers[offset:offset + 6]
-        if kind not in {"Full_Impedance", "Off_Diagonal_Impedance", "Full_Vertical_Components"}:
-            raise ValueError(f"Unsupported ModEM data type: {kind}")
-        if _detect_header_convention(["> " + sign]) is None:
-            raise ValueError("Missing ModEM block time convention")
-        if float(angle) != 0:
-            raise ValueError("ModEM orientation must be zero; rotate the source explicitly first")
-        position = tuple(float(v) for v in origin.split())
-        if len(position) not in (2, 3) or not all(math.isfinite(v) for v in position):
-            raise ValueError("Invalid ModEM origin")
-        origins.add(position)
-        if not re.fullmatch(r"\d+\s+\d+", counts):
-            raise ValueError("Invalid ModEM period/station counts")
-        if kind == "Full_Vertical_Components":
-            if unit != "[]":
-                raise ValueError("ModEM tipper units must be []")
-        else:
-            if unit.lower() not in {"[mv/km]/[nt]", "[ohm]", "ohm"}:
-                raise ValueError(f"Unsupported ModEM impedance units: {unit}")
-            units.add("mv_per_km_per_nt" if unit.lower() == "[mv/km]/[nt]" else "ohm")
-    block = -1
-    rows_by_block = {}
-    header_index = 0
-    for line in lines:
-        if line.lstrip().startswith(">"):
-            block = header_index // 6
-            header_index += 1
-        elif line.strip() and not line.lstrip().startswith("#"):
-            tokens = line.split()
-            if block < 0 or header_index % 6 or len(tokens) != 11:
-                raise ValueError("ModEM rows must follow a complete block header and contain 11 columns")
-            is_tipper = headers[block * 6] == "Full_Vertical_Components"
-            allowed = ("TX", "TY", "TZX", "TZY") if is_tipper else ("ZXX", "ZXY", "ZYX", "ZYY")
-            if headers[block * 6] == "Off_Diagonal_Impedance":
-                allowed = ("ZXY", "ZYX")
-            if tokens[7].upper() not in allowed:
-                raise ValueError("ModEM component does not match its block type")
-            periods, names = rows_by_block.setdefault(block, (set(), set()))
-            periods.add(float(tokens[0]))
-            names.add(tokens[1])
-    for block in range(len(headers) // 6):
-        periods, names = rows_by_block.get(block, (set(), set()))
-        if tuple(map(int, headers[block * 6 + 5].split())) != (len(periods), len(names)):
-            raise ValueError("ModEM period/station counts do not match the block rows")
-    if len(units) > 1 or len(origins) != 1:
-        raise ValueError("ModEM blocks must share their impedance units and coordinate origin")
+    unit, origin = read_modem_header(lines)
     convention = _detect_header_convention(lines)
-    config = SourceConfig("modem", path, next(iter(units), "ohm"), convention, False, "*.edi")
+    config = SourceConfig("modem", path, unit, convention, False, "*.edi",
+                          modem_vertical_coordinate="depth_m")
     survey = read_modem_data(path, config, require_impedance=False)
-    # The legacy data adapter calls column 7 elevation; the standard ModEM field is Z down.
-    stations = tuple(replace(s, model_x_km=s.north_m / 1000, model_y_km=s.east_m / 1000,
-                             surface_depth_km=s.elevation_m / 1000, elevation_m=None)
+    stations = tuple(replace(s, model_x_km=s.north_m / 1000, model_y_km=s.east_m / 1000)
                      for s in survey.stations)
-    return replace(survey, stations=stations, metadata={"modem_origin": list(next(iter(origins)))})
+    return replace(survey, stations=stations, metadata={"modem_origin": list(origin)})
 
 
 def read_observations(source: Path, format: str, surface_depth_m: float | None = None) -> Survey:

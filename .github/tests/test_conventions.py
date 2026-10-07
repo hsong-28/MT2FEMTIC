@@ -84,6 +84,10 @@ class ConventionTests(unittest.TestCase):
     def test_depth_is_positive_down(self) -> None:
         self.assertEqual(elevation_to_depth_km(750.0, 1250.0), 0.5)
 
+    def test_station_projection_rejects_unhandled_response_rotation(self) -> None:
+        with self.assertRaisesRegex(ValueError, "azimuth.*zero"):
+            project_station(station(), coordinate_config(model_axis_azimuth_deg=90))
+
     def test_geographic_station_is_projected_and_round_tripped(self) -> None:
         projected, round_trip_error_m = project_station(station(), coordinate_config())
         self.assertAlmostEqual(projected.model_x_km or 0.0, 0.0, places=5)

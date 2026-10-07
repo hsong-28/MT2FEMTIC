@@ -1,6 +1,8 @@
 /.venv*/
 /build/
 /dist/
+/src/build/
+/src/dist/
 *.egg-info/
 __pycache__/
 *.py[cod]

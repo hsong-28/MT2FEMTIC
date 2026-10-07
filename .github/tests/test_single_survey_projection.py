@@ -17,8 +17,8 @@ from mt2femtic.single_survey.projection import project_sites_stage, project_surv
 from tests.test_single_survey_case import valid_payload
 
 
-ROOT = Path(__file__).parents[1]
-EDI_FIXTURE = ROOT / "tests/fixtures/edi/plus_iwt.edi"
+ROOT = Path(__file__).parents[2]
+EDI_FIXTURE = ROOT / ".github/tests/fixtures/edi/plus_iwt.edi"
 
 
 class SingleSurveyProjectionTests(unittest.TestCase):
@@ -83,17 +83,13 @@ class SingleSurveyProjectionTests(unittest.TestCase):
             project_sites_stage(self.root)
         self.assertFalse((self.root / "2-Projection").exists())
 
-    def test_nonzero_azimuth_uses_existing_rotation_contract(self) -> None:
+    def test_nonzero_azimuth_is_rejected_before_projection(self) -> None:
         payload = json.loads((self.root / "survey.json").read_text(encoding="utf-8"))
         payload["coordinates"]["model_axis_azimuth_deg"] = 90.0
         (self.root / "survey.json").write_text(json.dumps(payload), encoding="utf-8")
-        project_sites_stage(self.root)
-        with (self.root / "2-Projection/stations_projected.csv").open(
-            encoding="utf-8", newline=""
-        ) as stream:
-            row = next(csv.DictReader(stream))
-        self.assertAlmostEqual(float(row["model_x_km"]), float(row["east_offset_m"]) / 1000.0)
-        self.assertAlmostEqual(float(row["model_y_km"]), -float(row["north_offset_m"]) / 1000.0)
+        with self.assertRaisesRegex(ValueError, "azimuth.*zero"):
+            project_sites_stage(self.root)
+        self.assertFalse((self.root / "2-Projection").exists())
 
     def test_duplicate_projected_locations_fail(self) -> None:
         station = Station(1, "A", None, None, 0.0, 0.0, 0.0, None, None, None, ())
@@ -106,7 +102,7 @@ class SingleSurveyProjectionTests(unittest.TestCase):
         env = os.environ.copy()
         env["PYTHONPATH"] = str(ROOT / "src")
         result = subprocess.run(
-            [sys.executable, str(ROOT / "scripts/02_project_sites.py"), "--root", str(self.root)],
+            [sys.executable, str(ROOT / "examples/manual_workflow/02_project_sites.py"), "--root", str(self.root)],
             check=True,
             capture_output=True,
             text=True,

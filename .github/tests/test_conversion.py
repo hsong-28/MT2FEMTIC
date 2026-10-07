@@ -68,7 +68,7 @@ class ConversionTests(unittest.TestCase):
 
     @unittest.skipUnless(importlib.util.find_spec("netCDF4"), "optional conversion dependency")
     def test_bundled_complete_example_matches_halfspace_and_converts(self):
-        source = Path(__file__).resolve().parents[1] / "examples/minimal/input/modem/complete.dat"
+        source = Path(__file__).resolve().parents[2] / "examples/minimal/input/modem/complete.dat"
         convert(source, self.root / "j", "modem", "jif3d")
         convert(self.root / "j", self.root / "f", "jif3d", "femtic")
         row = read_observations(self.root / "f", "femtic").stations[0].samples[0]
@@ -136,7 +136,7 @@ class ConversionTests(unittest.TestCase):
             read_observations(self.source, "modem")
 
     def test_broken_hill_full_observation_round_trip(self):
-        source = Path(__file__).resolve().parents[1] / "examples/broken_hill/input/modem/BH_31.dat"
+        source = Path(__file__).resolve().parents[2] / "examples/broken_hill/input/modem/BH_31.dat"
         original = read_observations(source, "modem")
         payload = convert(source, self.root / "f", "modem", "femtic")
         self.assertEqual(payload["complex_observation_count"], 3006)

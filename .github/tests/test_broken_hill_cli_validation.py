@@ -12,11 +12,11 @@ import venv
 from pathlib import Path
 
 
-ROOT = Path(__file__).parents[1]
+ROOT = Path(__file__).parents[2]
 EXAMPLE = ROOT / "examples" / "broken_hill"
 SCRIPTS = EXAMPLE / "scripts"
-EDI_FIXTURE = ROOT / "tests" / "fixtures" / "edi" / "plus_iwt.edi"
-MODEM_FIXTURE = ROOT / "tests" / "fixtures" / "modem" / "survey.dat"
+EDI_FIXTURE = ROOT / ".github/tests" / "fixtures" / "edi" / "plus_iwt.edi"
+MODEM_FIXTURE = ROOT / ".github/tests" / "fixtures" / "modem" / "survey.dat"
 
 
 class BrokenHillCliValidationTests(unittest.TestCase):

@@ -46,10 +46,10 @@ is zero, all measurement indices are zero, and distortion is identity.
 
 ## Reproduce the conversion check
 
-From the package root, after installing `.[conversion]`:
+From the repository root, after installing `./src[conversion]`:
 
 ```powershell
-python -m unittest tests.test_conversion.ConversionTests.test_upstream_jif3d_example_and_all_six_directions -v
+python -m unittest discover -s .github/tests -t .github -p test_conversion.py -k upstream_jif3d_example_and_all_six_directions -v
 ```
 
 The test reads the bundled native files, independently derives expected

@@ -15,8 +15,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python -m pip install ".[conversion]" build
-      - run: python -m unittest discover -s tests -p "test_*.py" -v
-      - run: python -m compileall -q src tests scripts
-      - run: python -m build
+      - run: python .github/tests/verify_package.py --root .
+      - run: python -m pip install "./src[conversion]" build
+      - run: python -m unittest discover -s .github/tests -t .github -p "test_*.py" -v
+      - name: Run native DHEXA smoke test
+        if: runner.os == 'Linux'
+        env:
+          MT2FEMTIC_DHEXA: ${{ github.workspace }}/examples/broken_hill/tools/makeDHexaMesh-v1.6.1
+        run: python -m unittest discover -s .github/tests -t .github -p test_release_smoke.py -v
+      - run: python -m compileall -q src .github/tests examples
+      - run: python -m build src
       - run: mt2femtic --help

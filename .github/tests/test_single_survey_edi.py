@@ -12,8 +12,8 @@ from mt2femtic.single_survey.edi import read_edi_stage
 from tests.test_single_survey_case import valid_payload
 
 
-ROOT = Path(__file__).parents[1]
-EDI_FIXTURE = ROOT / "tests/fixtures/edi/plus_iwt.edi"
+ROOT = Path(__file__).parents[2]
+EDI_FIXTURE = ROOT / ".github/tests/fixtures/edi/plus_iwt.edi"
 
 
 class SingleSurveyEdiTests(unittest.TestCase):

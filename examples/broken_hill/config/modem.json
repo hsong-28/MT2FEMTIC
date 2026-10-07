@@ -4,6 +4,7 @@
   "dataset_id": "broken-hill-modem",
   "source": {
     "type": "modem",
+    "modem_vertical_coordinate": "depth_m",
     "path": "../input/modem/BH_31.dat",
     "impedance_unit": "mv_per_km_per_nt",
     "time_convention": "exp_plus_iwt",

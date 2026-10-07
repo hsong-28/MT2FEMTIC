@@ -51,7 +51,8 @@ def _write_configs(source: str, root: Path, generator: Path) -> tuple[Path, Path
         )
     else:
         data_payload["source"].update(
-            {"type": "modem", "path": str(FIXTURES / "modem" / "survey.dat")}
+            {"type": "modem", "path": str(FIXTURES / "modem" / "survey.dat"),
+             "modem_vertical_coordinate": "elevation_m"}
         )
     data_payload["selection"]["periods_s"] = [1.0]
 

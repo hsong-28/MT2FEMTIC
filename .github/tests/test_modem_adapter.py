@@ -6,7 +6,9 @@ import unittest
 from pathlib import Path
 
 from mt2femtic.config import SourceConfig
-from mt2femtic.conventions import FIELD_TO_OHM
+from mt2femtic.conventions import FIELD_TO_OHM, project_station
+from mt2femtic.conversion import read_observations
+from tests.test_conventions import coordinate_config
 from mt2femtic.model import ModemModel
 from mt2femtic.modem_adapter import (
     modem_values_in_femtic_order,
@@ -26,6 +28,7 @@ def modem_config(path: Path = FIXTURES / "survey.dat", **overrides: object) -> S
         "time_convention": "exp_plus_iwt",
         "allow_time_convention_override": False,
         "edi_pattern": "*.edi",
+        "modem_vertical_coordinate": "elevation_m",
     }
     values.update(overrides)
     return SourceConfig(**values)  # type: ignore[arg-type]
@@ -45,6 +48,51 @@ def two_by_two_numbered_model() -> ModemModel:
 
 
 class ModemAdapterTests(unittest.TestCase):
+    def test_missing_vertical_declaration_is_rejected(self) -> None:
+        with self.assertRaisesRegex(ValueError, "modem_vertical_coordinate"):
+            read_modem_data(FIXTURES / "survey.dat", modem_config(modem_vertical_coordinate=None))
+
+    def test_declared_depth_matches_conversion_without_datum_shift(self) -> None:
+        path = Path(__file__).parents[2] / "examples/minimal/input/modem/complete.dat"
+        config = modem_config(path, modem_vertical_coordinate="depth_m")
+        source = read_modem_data(path, config).stations[0]
+        projected, _ = project_station(source, coordinate_config(vertical_datum_elevation_m=500))
+        converted = read_observations(path, "modem").stations[0]
+        self.assertIsNone(source.elevation_m)
+        self.assertEqual(projected.surface_depth_km, -0.1)
+        self.assertEqual(projected.surface_depth_km, converted.surface_depth_km)
+        self.assertEqual(projected.samples, source.samples)
+
+    def test_declared_legacy_elevation_keeps_datum_formula(self) -> None:
+        config = modem_config(modem_vertical_coordinate="elevation_m")
+        source = read_modem_data(FIXTURES / "survey.dat", config).stations[0]
+        projected, _ = project_station(source, coordinate_config(vertical_datum_elevation_m=1000))
+        self.assertEqual(source.elevation_m, 750)
+        self.assertEqual(projected.surface_depth_km, 0.25)
+
+    def test_units_conflict_is_rejected_even_with_time_override(self) -> None:
+        with self.assertRaisesRegex(ValueError, "units.*conflict"):
+            read_modem_data(FIXTURES / "survey.dat", modem_config(
+                impedance_unit="ohm", allow_time_convention_override=True))
+
+    def test_nonzero_modem_header_orientation_is_rejected(self) -> None:
+        fixture = Path(__file__).parents[2] / "examples/minimal/input/modem/complete.dat"
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "rotated.dat"
+            path.write_text(fixture.read_text().replace("> 0\n> 0 0", "> 30\n> 0 0"))
+            with self.assertRaisesRegex(ValueError, "orientation"):
+                read_modem_data(path, modem_config(path))
+
+    def test_full_header_missing_sign_preserves_explicit_time_override(self) -> None:
+        fixture = Path(__file__).parents[2] / "examples/minimal/input/modem/complete.dat"
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "missing-sign.dat"
+            path.write_text(fixture.read_text().replace(r"> exp(+i\omega t)", ">"))
+            with self.assertRaisesRegex(ValueError, "Missing ModEM time convention"):
+                read_modem_data(path, modem_config(path))
+            survey = read_modem_data(path, modem_config(path, allow_time_convention_override=True))
+            self.assertTrue(survey.metadata["time_convention_override"])
+
     def test_data_uses_north_east_and_conjugates(self) -> None:
         survey = read_modem_data(FIXTURES / "survey.dat", modem_config())
         station = survey.stations[0]

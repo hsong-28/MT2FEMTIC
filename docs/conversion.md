@@ -53,16 +53,18 @@ sign change is needed between the shared local frames; only metres/kilometres
 are converted. These conversions write 17 significant digits, while the
 existing `data` command retains its established 12-digit output.
 
-The older `data` ModEM adapter calls its seventh column `elevation_m`.
-`convert` explicitly interprets the standard ModEM column as positive-down Z;
-the original data-preparation behavior is unchanged. Broken Hill has Z=0.
+Both `data` and `convert` interpret standard ModEM Z as positive down in metres.
+For `data`, declare `source.modem_vertical_coordinate="depth_m"`; historical
+positive-up list files require `"elevation_m"`. `convert` accepts only standard
+ModEM Z. Both commands share the full-header unit, orientation and count checks.
+Broken Hill declares `depth_m` and has Z=0.
 
 ## Jif3D
 
 Install the optional NetCDF dependency:
 
 ```powershell
-python -m pip install ".[conversion]"
+python -m pip install "./src[conversion]"
 mt2femtic convert --from modem --to jif3d --input examples/minimal/input/modem/complete.dat --output work/jif3d
 mt2femtic convert --from jif3d --to femtic --input work/jif3d --output work/femtic
 ```
@@ -70,12 +72,12 @@ mt2femtic convert --from jif3d --to femtic --input work/jif3d --output work/femt
 The bundled complete file is a synthetic 100 ohm-m half-space at 1 Hz,
 with zero diagonal impedance and tipper. Its geographic zeros are placeholders.
 
-A separate [upstream Jif3D fixture](../tests/fixtures/jif3d/README.md) includes
+A separate [upstream Jif3D fixture](../.github/tests/fixtures/jif3d/README.md) includes
 the native `testJ` sample: one station, five frequencies, 20 complex impedances,
 and 10 complex tippers. To try it with the installed command:
 
 ```powershell
-mt2femtic convert --from jif3d --to femtic --input tests/fixtures/jif3d/impedance.nc --output work/testj-femtic
+mt2femtic convert --from jif3d --to femtic --input .github/tests/fixtures/jif3d/impedance.nc --output work/testj-femtic
 mt2femtic convert --from femtic --to modem --input work/testj-femtic --output work/testj-modem
 mt2femtic convert --from modem --to jif3d --input work/testj-modem --output work/testj-returned
 ```
@@ -112,7 +114,7 @@ The implementation follows the upstream readers/writers inspected on
 - [ModEM read/write documentation](https://github.com/magnetotellurics/ModEM-Tools/blob/main/Examples/Read_Write_Data_Example.MD): impedance and vertical-component block types.
 
 `conversion.py` handles ASCII formats and common checks; `jif3d_io.py` handles
-the native NetCDF subset. `tests/test_conversion.py` checks known units/signs,
+the native NetCDF subset. `.github/tests/test_conversion.py` checks known units/signs,
 nonzero depths, native array fields, missing-data rejection, all six conversion
 directions, and the full Broken Hill FEMTIC/ModEM round trip. Each conversion
 also rereads its output and checks observations within floating-point roundoff.

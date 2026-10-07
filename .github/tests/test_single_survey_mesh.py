@@ -20,8 +20,8 @@ from tests.test_mesh_config import valid_mesh_config_payload
 from tests.test_single_survey_case import valid_payload
 
 
-ROOT = Path(__file__).parents[1]
-EDI_FIXTURE = ROOT / "tests/fixtures/edi/plus_iwt.edi"
+ROOT = Path(__file__).parents[2]
+EDI_FIXTURE = ROOT / ".github/tests/fixtures/edi/plus_iwt.edi"
 
 
 def mesh_payload() -> dict[str, object]:
@@ -144,7 +144,7 @@ class SingleSurveyMeshTests(unittest.TestCase):
         env = os.environ.copy()
         env["PYTHONPATH"] = str(ROOT / "src")
         result = subprocess.run(
-            [sys.executable, str(ROOT / "scripts/04_write_meshgen.py"), "--root", str(self.root)],
+            [sys.executable, str(ROOT / "examples/manual_workflow/04_write_meshgen.py"), "--root", str(self.root)],
             check=True,
             capture_output=True,
             text=True,

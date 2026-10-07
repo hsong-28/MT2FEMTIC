@@ -9,11 +9,11 @@ before continuing.
 ```powershell
 $env:PYTHONPATH = (Resolve-Path .\src).Path
 $SurveyRoot = ".\surveys\my-survey"
-python scripts\00_check_input.py --root $SurveyRoot
-python scripts\01_read_edi.py --root $SurveyRoot
-python scripts\02_project_sites.py --root $SurveyRoot
-python scripts\03_select_data.py --root $SurveyRoot
-python scripts\04_write_meshgen.py --root $SurveyRoot
+python examples\manual_workflow\00_check_input.py --root $SurveyRoot
+python examples\manual_workflow\01_read_edi.py --root $SurveyRoot
+python examples\manual_workflow\02_project_sites.py --root $SurveyRoot
+python examples\manual_workflow\03_select_data.py --root $SurveyRoot
+python examples\manual_workflow\04_write_meshgen.py --root $SurveyRoot
 ```
 
 The survey root must contain `survey.json` and `0-EDI`. Stage 01 creates

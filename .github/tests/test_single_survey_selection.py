@@ -14,8 +14,8 @@ from mt2femtic.single_survey.selection import select_data_stage
 from tests.test_single_survey_case import valid_payload
 
 
-ROOT = Path(__file__).parents[1]
-EDI_FIXTURE = ROOT / "tests/fixtures/edi/plus_iwt.edi"
+ROOT = Path(__file__).parents[2]
+EDI_FIXTURE = ROOT / ".github/tests/fixtures/edi/plus_iwt.edi"
 
 
 class SingleSurveySelectionTests(unittest.TestCase):
@@ -99,7 +99,7 @@ class SingleSurveySelectionTests(unittest.TestCase):
         env = os.environ.copy()
         env["PYTHONPATH"] = str(ROOT / "src")
         result = subprocess.run(
-            [sys.executable, str(ROOT / "scripts/03_select_data.py"), "--root", str(self.root)],
+            [sys.executable, str(ROOT / "examples/manual_workflow/03_select_data.py"), "--root", str(self.root)],
             check=True,
             capture_output=True,
             text=True,

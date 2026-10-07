@@ -11,7 +11,7 @@ import unittest
 
 class ModuleImportTests(unittest.TestCase):
     def test_dhexa_can_be_imported_directly(self) -> None:
-        root = Path(__file__).resolve().parents[1]
+        root = Path(__file__).resolve().parents[2]
         environment = os.environ.copy()
         environment["PYTHONPATH"] = str(root / "src")
         result = subprocess.run(

@@ -51,6 +51,7 @@ class DataPipelineTests(unittest.TestCase):
             source.update(
                 {
                     "type": "modem",
+                    "modem_vertical_coordinate": "elevation_m",
                     "path": str(MODEM_FIXTURE),
                     "impedance_unit": "mv_per_km_per_nt",
                     "time_convention": "exp_plus_iwt",
@@ -66,6 +67,37 @@ class DataPipelineTests(unittest.TestCase):
         from mt2femtic.data_pipeline import data
 
         return data(config_path, self.output)
+
+    def test_modem_metadata_conflicts_fail_validate_and_data(self) -> None:
+        from mt2femtic.data_pipeline import data
+        from mt2femtic.validation import validate
+
+        fixture = Path(__file__).parents[2] / "examples/minimal/input/modem/complete.dat"
+        for case, text in (
+            ("units", fixture.read_text().replace("> [mV/km]/[nT]", "> [ohm]")),
+            ("orientation", fixture.read_text().replace("> 0\n> 0 0", "> 30\n> 0 0")),
+        ):
+            with self.subTest(case=case):
+                source = self.root / f"{case}.dat"
+                source.write_text(text, encoding="ascii")
+                config = self._write_config("modem", lambda p: p["source"].update(
+                    path=str(source), modem_vertical_coordinate="depth_m"))
+                for command in (validate, data):
+                    output = self.root / f"{case}-{command.__name__}"
+                    manifest = command(config, output)
+                    self.assertEqual(manifest.stages["source"].status, "failed")
+                    self.assertFalse((output / "inversion_input/observe.dat").exists())
+
+    def test_standard_modem_depth_is_retained_in_published_coordinates(self) -> None:
+        source = Path(__file__).parents[2] / "examples/minimal/input/modem/complete.dat"
+        config = self._write_config("modem", lambda p: p["source"].update(
+            path=str(source), modem_vertical_coordinate="depth_m"))
+        result = self._data(config)
+        self.assertEqual(result.stages["femtic_input"].status, "passed")
+        with (self.output / "projection/stations_projected.csv").open() as stream:
+            row = next(csv.DictReader(stream))
+        self.assertEqual(float(row["surface_depth_km"]), -0.1)
+        self.assertEqual(row["elevation_m"], "")
 
     def test_edi_data_package_is_complete_and_has_no_mesh_products(self) -> None:
         manifest = self._data(self._write_config())

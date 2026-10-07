@@ -32,6 +32,7 @@ class SourceConfig:
     edi_pattern: str
     edi_list_file: Path | None = None
     station_name_source: str = "edi_metadata"
+    modem_vertical_coordinate: str | None = None
 
 
 @dataclass(frozen=True)
@@ -116,6 +117,7 @@ def data_config_from_dict(
     source_data = dict(_object(root["source"], "source"))
     source_data.setdefault("edi_list_file", None)
     source_data.setdefault("station_name_source", "edi_metadata")
+    source_data.setdefault("modem_vertical_coordinate", None)
     _check_keys(
         source_data,
         {
@@ -127,12 +129,18 @@ def data_config_from_dict(
             "edi_pattern",
             "edi_list_file",
             "station_name_source",
+            "modem_vertical_coordinate",
         },
         "source",
     )
     source_type = _text(source_data["type"], "source.type").lower()
     if source_type not in {"edi", "modem"}:
         raise ValueError("source.type must be edi or modem")
+    vertical = source_data["modem_vertical_coordinate"]
+    if source_type == "modem" and vertical not in ("depth_m", "elevation_m"):
+        raise ValueError("source.modem_vertical_coordinate must be depth_m or elevation_m")
+    if source_type == "edi" and vertical is not None:
+        raise ValueError("source.modem_vertical_coordinate must be null for EDI")
     impedance_unit = _text(
         source_data["impedance_unit"], "source.impedance_unit"
     ).lower()
@@ -166,6 +174,7 @@ def data_config_from_dict(
             source_data["edi_list_file"], "source.edi_list_file", base_dir
         ),
         station_name_source=station_name_source,
+        modem_vertical_coordinate=vertical,
     )
 
     coordinate_data = _object(root["coordinates"], "coordinates")
@@ -216,6 +225,8 @@ def data_config_from_dict(
         ),
         modem_axis_convention=modem_axes,
     )
+    if coordinates.model_axis_azimuth_deg != 0:
+        raise ValueError("model_axis_azimuth_deg must be zero; response rotation is not supported")
 
     selection_data = _object(root["selection"], "selection")
     _check_keys(

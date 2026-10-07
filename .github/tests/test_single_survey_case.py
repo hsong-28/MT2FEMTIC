@@ -11,7 +11,7 @@ import unittest
 from mt2femtic.single_survey.case import check_input, paths_for
 
 
-ROOT = Path(__file__).parents[1]
+ROOT = Path(__file__).parents[2]
 
 
 def valid_payload(source_path: str = "0-EDI") -> dict[str, object]:
@@ -101,6 +101,7 @@ class SingleSurveyCaseTests(unittest.TestCase):
         payload = valid_payload()
         assert isinstance(payload["source"], dict)
         payload["source"]["type"] = "modem"
+        payload["source"]["modem_vertical_coordinate"] = "depth_m"
         self.write_case(payload)
         with self.assertRaisesRegex(ValueError, "EDI-only implementation stage"):
             check_input(self.root)
@@ -128,7 +129,7 @@ class SingleSurveyCaseTests(unittest.TestCase):
         env = os.environ.copy()
         env["PYTHONPATH"] = str(ROOT / "src")
         result = subprocess.run(
-            [sys.executable, str(ROOT / "scripts/00_check_input.py"), "--root", str(self.root)],
+            [sys.executable, str(ROOT / "examples/manual_workflow/00_check_input.py"), "--root", str(self.root)],
             check=True,
             capture_output=True,
             text=True,

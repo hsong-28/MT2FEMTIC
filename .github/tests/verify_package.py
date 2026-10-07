@@ -15,12 +15,15 @@ from pathlib import Path
 REQUIRED_FILES = (
     "LICENSE",
     "README.md",
-    "CITATION.cff",
-    "THIRD_PARTY_NOTICES.md",
-    "pyproject.toml",
+    "docs/CITATION.cff",
+    "docs/THIRD_PARTY_NOTICES.md",
+    "src/pyproject.toml",
+    "src/README.md",
+    "src/LICENSE",
     "src/mt2femtic/__init__.py",
-    "tests/fixtures/femticpy/LICENSE",
+    ".github/tests/fixtures/femticpy/LICENSE",
 )
+CHECKSUM_MANIFEST = ".github/SHA256SUMS.txt"
 TEXT_SUFFIXES = {
     ".cff",
     ".cfg",
@@ -88,14 +91,16 @@ def release_files(root: Path) -> list[Path]:
 
 
 def write_checksum_manifest(root: Path) -> int:
-    """Write SHA256SUMS.txt for every distributable file below *root*."""
+    """Write .github/SHA256SUMS.txt with paths relative to *root*."""
 
     package = root.resolve()
     rows = [
         f"{sha256_file(path)}  {path.relative_to(package).as_posix()}"
         for path in release_files(package)
     ]
-    (package / "SHA256SUMS.txt").write_text("\n".join(rows) + "\n", encoding="ascii")
+    manifest = package / CHECKSUM_MANIFEST
+    manifest.parent.mkdir(parents=True, exist_ok=True)
+    manifest.write_text("\n".join(rows) + "\n", encoding="ascii", newline="\n")
     return len(rows)
 
 
@@ -120,7 +125,7 @@ def _citation_version(path: Path) -> str | None:
 
 
 def _verify_checksums(root: Path, errors: list[str]) -> int:
-    manifest = root / "SHA256SUMS.txt"
+    manifest = root / CHECKSUM_MANIFEST
     if not manifest.is_file():
         return 0
     listed: dict[str, str] = {}
@@ -153,9 +158,9 @@ def verify_package(root: Path) -> dict[str, object]:
             errors.append(f"missing required file: {relative}")
 
     versions: dict[str, str | None] = {"pyproject": None, "package": None, "citation": None}
-    pyproject = package / "pyproject.toml"
+    pyproject = package / "src/pyproject.toml"
     package_init = package / "src" / "mt2femtic" / "__init__.py"
-    citation = package / "CITATION.cff"
+    citation = package / "docs/CITATION.cff"
     if pyproject.is_file():
         versions["pyproject"] = tomllib.loads(pyproject.read_text(encoding="utf-8")).get("project", {}).get("version")
     if package_init.is_file():
@@ -196,8 +201,8 @@ def verify_package(root: Path) -> dict[str, object]:
         warnings.append(f"cache files present but excluded from release content: {len(cache_files)}")
 
     checksum_count = _verify_checksums(package, errors)
-    if not (package / "SHA256SUMS.txt").is_file():
-        warnings.append("SHA256SUMS.txt is not present; generate it for the release archive")
+    if not (package / CHECKSUM_MANIFEST).is_file():
+        warnings.append(f"{CHECKSUM_MANIFEST} is not present; generate it for the release archive")
 
     return {
         "schema_version": 1,
@@ -219,7 +224,7 @@ def main() -> int:
     parser.add_argument(
         "--write-checksums",
         action="store_true",
-        help="regenerate SHA256SUMS.txt before verification",
+        help="regenerate .github/SHA256SUMS.txt before verification",
     )
     args = parser.parse_args()
     if args.write_checksums:

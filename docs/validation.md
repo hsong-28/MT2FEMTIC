@@ -11,6 +11,10 @@ mt2femtic mesh --config CONFIG --data DATA --output OUTPUT
 mt2femtic convert --from FORMAT --to FORMAT --input INPUT --output OUTPUT
 ```
 
+CI verifies the package checksums before installation and runs the existing
+small EDI/ModEM native DHEXA integration test on Linux. Windows runs the Python
+suite; local WSL mesh checks remain available below.
+
 The original preparation commands write a log and their own manifests:
 
 - `mt2femtic_validation_manifest.json`: preflight evidence.
@@ -40,14 +44,15 @@ not interpolate; log-linear selection does not extrapolate. See
 
 ## 1. Verify the package and install a fresh wheel
 
-Run from an unmodified extracted source package. Verify its existing checksums
+Run from an unmodified repository download or full reproducibility archive. The checksum list is
+`.github/SHA256SUMS.txt`, with LF line endings and paths relative to the package root. Verify it
 before building; do not regenerate a checksum manifest to bypass a mismatch.
 
 ```powershell
 $Repo = (Get-Location).Path
 $Example = Join-Path $Repo "examples\broken_hill"
 $Review = Join-Path $Repo "work\manual-validation"
-py -3.12 scripts\verify_package.py --root .
+py -3.12 .github\tests\verify_package.py --root .
 if ($LASTEXITCODE -ne 0) { throw "Package verification failed" }
 if (Test-Path -LiteralPath $Review) { throw "Review directory already exists" }
 New-Item -ItemType Directory -Path $Review | Out-Null
@@ -57,7 +62,7 @@ py -3.12 -m venv "$Review\venv"
 $Python = Join-Path $Review "venv\Scripts\python.exe"
 & $Python -m pip install build
 # The following invokes python -m build in the clean environment.
-& $Python -m build --outdir "$Review\dist" $Repo
+& $Python -m build --outdir "$Review\dist" "$Repo\src"
 $Wheel = Get-ChildItem "$Review\dist" -Filter *.whl
 & $Python -m pip install ($Wheel.FullName + "[conversion]")
 Push-Location $Review
@@ -76,7 +81,7 @@ Python dependencies may need internet access; Broken Hill inputs are bundled.
 & $Python -m mt2femtic mesh --help
 & $Python -m mt2femtic convert --help
 $env:MT2FEMTIC_DHEXA = Join-Path $Example "tools\makeDHexaMesh-v1.6.1"
-& $Python -m unittest discover -s "$Repo\tests" -t $Repo -p "test_*.py" -v
+& $Python -m unittest discover -s "$Repo\.github\tests" -t "$Repo\.github" -p "test_*.py" -v
 ```
 
 The environment variable enables real v1.6.1 generator tests for small EDI and
@@ -84,7 +89,8 @@ ModEM cases, including native topography and model/output checks. Windows mesh
 execution requires WSL2 Linux x86-64. No test may fail. Without that variable,
 the real-generator test is skipped and mesh execution remains unverified.
 The optional `conversion` extra enables native Jif3D NetCDF tests; without it,
-those tests are skipped.
+those tests are skipped. The FEMTICPy compatibility gate and its limits are
+documented with the [pinned fixture](../.github/tests/fixtures/femticpy/PROVENANCE.md).
 
 The [minimal example](../examples/minimal/README.md) provides editable data and
 mesh configurations. Set its mesh generator path to `$env:MT2FEMTIC_DHEXA`,
@@ -154,19 +160,20 @@ Previous comparisons against private r5b/r10 meshes and server responses are
 historical checks, not reproducible gates of this public package. This
 procedure does not run a FEMTIC or ModEM inversion.
 
-## 5. Check the built archive independently
+## 5. Check installation from the Python source distribution
 
 ```powershell
 $Archive = Get-ChildItem "$Review\dist" -Filter *.tar.gz
-$Extract = Join-Path $Review "extracted"
-New-Item -ItemType Directory -Path $Extract | Out-Null
-tar -xf $Archive.FullName -C $Extract
-$Frozen = (Get-ChildItem $Extract -Directory).FullName
-& $Python "$Frozen\scripts\verify_package.py" --root $Frozen
+& $Python -m pip install --force-reinstall --no-deps $Archive.FullName
+if ($LASTEXITCODE -ne 0) { throw "Source distribution installation failed" }
+Push-Location $Review
+& $Python -c "import mt2femtic; print(mt2femtic.__version__); print(mt2femtic.__file__)"
+& $Python -m unittest discover -s "$Repo\.github\tests" -t "$Repo\.github" -p "test_*.py" -v
+Pop-Location
 ```
 
-Require `passed: true`, no checksum errors, no internal development artifacts,
-and no missing licenses. Repeat the Broken Hill checks with `$Example` set to
-`$Frozen\examples\broken_hill` and a fresh output directory. Preserve logs and
-manifests as the validation record. The source archive includes examples and
-data; the wheel contains only the Python library.
+Require installation and all tests to succeed, with MT2FEMTIC imported from
+the review environment. The wheel and Python source distribution contain the
+installable library and its license. The full repository download contains
+the examples, bundled data, tests, documentation, and checksums; retain it for
+independent reproduction. Preserve logs and manifests as the validation record.
