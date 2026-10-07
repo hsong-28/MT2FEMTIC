@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use MT2FEMTIC, please cite the study listed below."
+message: "Citation metadata for MT2FEMTIC and the associated study."
 title: "MT2FEMTIC: validated 3-D MT data preparation and DHEXA meshing"
 type: software
 license: MIT

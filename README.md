@@ -70,10 +70,15 @@ require an explicit [vertical-coordinate declaration](docs/conventions.md#vertic
 
 ## Citation
 
-The initial version of these scripts was developed during the research reported in
-[**Revealing the Non-uniqueness Inherent in MT Inversion: A Comparative Study of Influential Factors and Algorithm-Dependent Uncertainties in FEMTIC and ModEM with USArray MT Data**](https://www.researchgate.net/publication/396540659_Revealing_the_Non-uniqueness_Inherent_in_MT_Inversion_A_Comparative_Study_of_Influential_Factors_and_Algorithm-Dependent_Uncertainties_in_FEMTIC_and_ModEM_with_USArray_MT_Data),
-and was used to convert MT data between FEMTIC and ModEM.
-If you use MT2FEMTIC, please cite this study; see [citation metadata](docs/CITATION.cff).
+For more details, see:
+
+Song, H., et al. (2025). Revealing the Non-uniqueness Inherent in MT Inversion:
+A Comparative Study of Influential Factors and Algorithm-Dependent Uncertainties
+in FEMTIC and ModEM with USArray MT Data. *Surveys in Geophysics*, **46**, 1079–1135.
+[DOI: 10.1007/s10712-025-09901-y](https://doi.org/10.1007/s10712-025-09901-y).
+[Citation metadata](docs/CITATION.cff).
+
+The early scripts were developed during this study for FEMTIC–ModEM data conversion.
 
 Code: [MIT License](LICENSE). Bundled data and tools retain their
 [original licenses](docs/THIRD_PARTY_NOTICES.md).
